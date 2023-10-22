@@ -1,580 +1,1 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blueking</title>
-    <!-- Include Tailwind CSS -->
-    <link href="css/style.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.css" rel="stylesheet" />
-
-    <link href="https://fonts.cdnfonts.com/css/king-richard" rel="stylesheet">
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-
-    <script>
-        // On page load or when changing themes, best to add inline in `head` to avoid FOUC
-        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark')
-        }
-    </script>
-</head>
-
-
-<body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 overflow-x-hidden">
-
-    <nav class="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
-        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-            <a href="index.html" class="flex items-center">
-                <img src="img/logo.png" class="h-16 mr-0" alt="Blueking Logo">
-                <span class="self-center text-3xl font-medium whitespace-nowrap text-[#09188b] italic"
-                    style="font-family: 'King Richard', sans-serif;">Blueking</span>
-            </a>
-            <div class="flex md:order-2">
-                <button id="theme-toggle" type="button"
-                    class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5">
-                    <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
-                    </svg>
-                    <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
-                            fill-rule="evenodd" clip-rule="evenodd"></path>
-                    </svg>
-                </button>
-                <button data-collapse-toggle="navbar-sticky" type="button"
-                    class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-                    aria-controls="navbar-sticky" aria-expanded="false">
-                    <span class="sr-only">Open main menu</span>
-                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 17 14">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M1 1h15M1 7h15M1 13h15" />
-                    </svg>
-                </button>
-            </div>
-            <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
-                <ul
-                    class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-                    <!-- <li>
-          <a href="#" class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500" aria-current="page">Home</a>
-        </li> -->
-                    <li>
-                        <a href="index.html#home"
-                            class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Home</a>
-                    </li>
-                    <li>
-                        <a href="index.html#about"
-                            class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">About</a>
-                    </li>
-                    <li>
-                        <a href="index.html#projects"
-                            class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Portfolio</a>
-                    </li>
-                    <li>
-                        <a href="index.html#contact"
-                            class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Contact</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <main class="mt-10 lg:-mt-14 scrolls" id="home">
-        <section
-            class="bg-gradient-to-r from-cyan-500 to-blue-700 text-white dark:text-gray-100 flex justify-center items-center lg:-mt-20 px-10 md:pl-32 md:pr-32 overflow-y-hidden scrolls">
-            <div class="md:container mx-auto mt-20 py-10 items-center grid grid-cols-1 md:grid-cols-2 scrolls">
-                <div class="block ">
-                    <h1 class="text-yellow-300">Hey there, I am</h1>
-                    <h1 class="text-5xl font-semibold mb-4">Samuel Adeniran</h1>
-                    <p class="text-lg mb-8">CEO, <span class="text-blue-300">Lead</span> Web Developer and Graphics
-                        Designer- Blueking</p>
-
-                    <p class="text-lg mb-8 md:mb-0"><span class="font-semibold text-yellow-300">Connect</span> with me
-                    </p>
-
-                    <div class="flex">
-                        <a href="#" class="text-white  hover:text-blue-300 mr-4">
-                            <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd"
-                                    d="M10 .333A9.911 9.911 0 0 0 6.866 19.65c.5.092.678-.215.678-.477 0-.237-.01-1.017-.014-1.845-2.757.6-3.338-1.169-3.338-1.169a2.627 2.627 0 0 0-1.1-1.451c-.9-.615.07-.6.07-.6a2.084 2.084 0 0 1 1.518 1.021 2.11 2.11 0 0 0 2.884.823c.044-.503.268-.973.63-1.325-2.2-.25-4.516-1.1-4.516-4.9A3.832 3.832 0 0 1 4.7 7.068a3.56 3.56 0 0 1 .095-2.623s.832-.266 2.726 1.016a9.409 9.409 0 0 1 4.962 0c1.89-1.282 2.717-1.016 2.717-1.016.366.83.402 1.768.1 2.623a3.827 3.827 0 0 1 1.02 2.659c0 3.807-2.319 4.644-4.525 4.889a2.366 2.366 0 0 1 .673 1.834c0 1.326-.012 2.394-.012 2.72 0 .263.18.572.681.475A9.911 9.911 0 0 0 10 .333Z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                        </a>
-                        <a href="https://twitter.com/Blueking001" class="text-white  hover:text-blue-300">
-                            <svg data-testid="geist-icon" height="16" stroke-linecap="round" stroke-linejoin="round"
-                                style="color:currentColor" viewBox="0 0 16 16" width="16" aria-label=""
-                                speechify-initial-font-family="__Inter_20951f, __Inter_Fallback_20951f"
-                                speechify-initial-font-size="14px">
-                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                    d="M0.5 0.5H5.75L9.48421 5.71053L14 0.5H16L10.3895 6.97368L16.5 15.5H11.25L7.51579 10.2895L3 15.5H1L6.61053 9.02632L0.5 0.5ZM12.0204 14L3.42043 2H4.97957L13.5796 14H12.0204Z"
-                                    fill="currentColor"
-                                    speechify-initial-font-family="__Inter_20951f, __Inter_Fallback_20951f"
-                                    speechify-initial-font-size="14px"></path>
-                            </svg>
-                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                d="M0.5 0.5H5.75L9.48421 5.71053L14 0.5H16L10.3895 6.97368L16.5 15.5H11.25L7.51579 10.2895L3 15.5H1L6.61053 9.02632L0.5 0.5ZM12.0204 14L3.42043 2H4.97957L13.5796 14H12.0204Z"
-                                fill="currentColor"
-                                speechify-initial-font-family="__Inter_20951f, __Inter_Fallback_20951f"
-                                speechify-initial-font-size="14px"></path>
-                            </svg>
-
-                        </a>
-                    </div>
-                    <div class="mt-5 text-blue-800"><a href="https://drive.usercontent.google.com/download?id=1Cj9ZJHky4RoHEak36C3lssWfvBKUARbV&export=download&authuser=0&confirm=t&uuid=2b5f1af1-74ec-48d3-a53c-ab60165c1858&at=APZUnTVBfhQn7RYUtUtXIZYkYLRq:1698013397932" target="_blank">Download my CV</a></div>
-                    <!-- <a href="#" class="text-white dark:text-gray-100 hover:text-blue-300">LinkedIn</a> -->
-
-
-                </div>
-                <div class="mx-auto pl-3 pr-10 -mb-20 md:-mt-20 scrolls md:ms-32 ">
-
-                    <img src="img/my img.png" alt="Your Photo" class="w-[30rem] mx-auto   -rotate-6">
-
-                </div>
-        </section>
-
-        <div class="container mx-auto mt-10 ">
-            <!-- About Section -->
-            <section class=" px-10 lg:pl-32 lg:pr-32 rounded-lg scrolls py-20 scroll-mt-8" id="about">
-                <h2 class="text-5xl font-semibold py-10 border-b-2 border-b-gray-500">About Me</h2>
-                <!-- <h2>
-                Creating, Innovating, Inspiring
-
-            </h2> -->
-                <p class="md:pl-10 px-5 text-lg md:pr-72 text-justify py-10 scrolls">
-                    Based in Nigeria, I'm a tech explorer, coder, and designer with a passion for digital creation. I'm
-                    young in the tech world but full of creativity and innovation.
-
-                    I'm on a mission to weave digital dreams into reality. My code and designs are my tools, and they
-                    come together to build a world that's both functional and beautiful.
-
-                    From Nigeria, where diversity thrives, I embrace challenges as opportunities. I'm not just here to
-                    code; I'm here to inspire others to create, innovate, and make a lasting impact.
-
-                    Join me on this journey of "Creating, Innovating, and Inspiring" as we reshape the tech landscape
-                    from Nigeria and beyond.
-                </p>
-            </section>
-
-            <!-- Portfolio Section -->
-            <section class=" py-20 scroll-mt-8" id="projects">
-                <div class="px-10 lg:pl-32 lg:pr-32">
-                    <h2 class="text-5xl font-semibold py-10 border-b-2 border-b-gray-500 scrolls">Portfolio</h2>
-                    <h2 class="text-3xl font-semibold w-1/2 py-5 border-b-2 border-b-gray-500 scrolls">Websites</h2>
-                </div>
-                <div
-                    class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-8 mt-10 px-3 md:px-10 lg:px-36 ">
-                    <!-- Example Project Card 1 -->
-                    <div class="bg-gray-300 dark:bg-gray-700 rounded-lg shadow-md overflow-hidden scrolls w-full">
-                        <iframe src="https://blueking-bionic-converter.vercel.app/" frameborder="0"
-                            class="w-full h-48"></iframe>
-                        <div class="p-4 bg-blue-950">
-                            <a href="https://blueking-bionic-converter.vercel.app/" target="_blank">
-                                <h3 class="text-xl text-white font-semibold">Bionic Converter</h3>
-                                <p class="text-gray-300 dark:text-gray-400">Revolutionize reading with Bionic Text.</p>
-                            </a>
-                        </div>
-                    </div>
-                    <!-- Example Project Card 2 -->
-                    <div class="bg-gray-300 dark:bg-gray-700 rounded-lg shadow-md overflow-hidden scrolls ">
-                        <iframe src="https://thesis-website-eight.vercel.app/" frameborder="0"
-                            class="w-full h-48"></iframe>
-                        <div class="p-4 bg-gray-100">
-                            <a href="https://thesis-website-eight.vercel.app/" target="_blank">
-                                <h3 class="text-xl text-black font-semibold">Edutask Masters</h3>
-                                <p class="text-gray-700">An Academic Project consulting website (demo)</p>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Example Project Card 2 -->
-                    <div class="bg-gray-300 dark:bg-gray-700 rounded-lg shadow-md overflow-hidden scrolls ">
-                        <iframe src="https://blueking-rockets.onrender.com/" frameborder="0"
-                            class="w-full h-48"></iframe>
-                        <div class="p-4 bg-teal-700">
-                            <a href="https://blueking-rockets.onrender.com/" target="_blank">
-                                <h3 class="text-xl text-white font-semibold">Blueking Rockets</h3>
-                                <p class="text-gray-300 dark:text-gray-400">Demo Rocket website</p>
-                            </a>
-                        </div>
-                    </div>
-                    <!-- Example Project Card 2 -->
-                    <div class="bg-gray-300 dark:bg-gray-700 rounded-lg shadow-md overflow-hidden scrolls ">
-                        <iframe src="https://anointedchurch.org.uk/Index.html" frameborder="0"
-                            class="w-full h-48"></iframe>
-                        <div class="p-4 bg-gray-50">
-                            <a href="https://anointedchurch.org.uk/Index.html" target="_blank">
-                                <h3 class="text-xl text-black font-semibold"> The Anointed Church, UK.</h3>
-                                <p class="text-gray-700 dark:text-gray-400">Church website</p>
-                            </a>
-                        </div>
-                    </div>
-
-
-
-
-
-                    <!-- Add more project cards here -->
-                </div>
-
-                <div class="px-10 lg:pl-32 lg:pr-32">
-                    <h2 class="text-3xl font-semibold w-1/2 py-5 mb-10 border-b-2 border-b-gray-500 scrolls ">Graphic
-                        Designs</h2>
-                </div>
-
-                <!-- <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mt-10  px-1 md:px-10">
-                
-<div class="project-card bg-white dark:bg-gray-700 rounded-lg shadow-md overflow-hidden">
-    <img src="project1.jpg" alt="Project 1" class="w-full h-48 object-cover">
-    <div class="p-4">
-        <h3 class="text-xl font-semibold">Project 1</h3>
-        <p class="text-gray-600 dark:text-gray-400">Description of Project 1.</p>
-    </div>
-</div>
-
-
-<div class="project-card bg-white dark:bg-gray-700 rounded-lg shadow-md overflow-hidden">
-    <img src="project2.jpg" alt="Project 2" class="w-full h-48 object-cover">
-    <div class="p-4">
-        <h3 class="text-xl font-semibold">Project 2</h3>
-        <p class="text-gray-600 dark:text-gray-400">Description of Project 2.</p>
-    </div>
-</div> -->
-
-
-                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 scrolls px-5 lg:px-36 ">
-                    <div class="grid gap-4">
-                        <div>
-                            <img class="h-auto max-w-full rounded-lg scrolls"
-                                src="https://res.cloudinary.com/dsemtlthg/image/upload/f_auto,q_auto/v1/Portfolio/nojfswsmyaj0dmqlklrt"
-                                alt="">
-                        </div>
-                        <div>
-                            <img class="h-auto max-w-full rounded-lg scrolls"
-                                src="https://res.cloudinary.com/dsemtlthg/image/upload/f_auto,q_auto/v1/Portfolio/uzamjxdnahjjuweploke"
-                                alt="">
-                        </div>
-                        <div>
-                            <img class="h-auto max-w-full rounded-lg scrolls"
-                                src="https://res.cloudinary.com/dsemtlthg/image/upload/f_auto,q_auto/v1/Portfolio/idpql9zpqnkf6oupm10w"
-                                alt="">
-                        </div>
-                    </div>
-                    <div class="grid gap-4">
-                        <div>
-                            <img class="h-auto max-w-full rounded-lg scrolls"
-                                src="https://res.cloudinary.com/dsemtlthg/image/upload/f_auto,q_auto/v1/Portfolio/d4awrperxjfqdodxljkh"
-                                alt="">
-                        </div>
-                        <div>
-                            <img class="h-auto max-w-full rounded-lg scrolls"
-                                src="https://res.cloudinary.com/dsemtlthg/image/upload/f_auto,q_auto/v1/Portfolio/lnv3wuofldvhk0q6g1jk"
-                                alt="">
-                        </div>
-                        <div>
-                            <img class="h-auto max-w-full rounded-lg scrolls"
-                                src="https://res.cloudinary.com/dsemtlthg/image/upload/f_auto,q_auto/v1/Portfolio/ffnypuf0i56sqkc6nkxj"
-                                alt="">
-                        </div>
-                    </div>
-                    <div class="grid gap-4">
-                        <div>
-                            <img class="h-auto max-w-full rounded-lg scrolls"
-                                src="https://res.cloudinary.com/dsemtlthg/image/upload/f_auto,q_auto/v1/Portfolio/okyj4u6j5lzxskkgqf9g"
-                                alt="">
-                        </div>
-                        <div>
-                            <img class="h-auto max-w-full rounded-lg scrolls"
-                                src="https://res.cloudinary.com/dsemtlthg/image/upload/f_auto,q_auto/v1/Portfolio/kjbfsgg4fk8rqui1sma8"
-                                alt="">
-                        </div>
-                        <div>
-                            <img class="h-auto max-w-full rounded-lg scrolls"
-                                src="https://res.cloudinary.com/dsemtlthg/image/upload/f_auto,q_auto/v1/Portfolio/m5ah5mnvxbhins8d9v37"
-                                alt="">
-                        </div>
-                    </div>
-                    <div class="grid gap-4">
-                        <div>
-                            <img class="h-auto max-w-full rounded-lg scrolls"
-                                src="https://res.cloudinary.com/dsemtlthg/image/upload/f_auto,q_auto/v1/Portfolio/zkuuye9tfge0mipasvst"
-                                alt="">
-                        </div>
-                        <div>
-                            <img class="h-auto max-w-full rounded-lg scrolls"
-                                src="https://res.cloudinary.com/dsemtlthg/image/upload/f_auto,q_auto/v1/Portfolio/y0meaw3tqkx2fvdev5rb"
-                                alt="">
-                        </div>
-                        <div>
-                            <img class="h-auto max-w-full rounded-lg scrolls"
-                                src="https://res.cloudinary.com/dsemtlthg/image/upload/f_auto,q_auto/v1/Portfolio/rqu7yxn6opyqdwdraurd"
-                                alt="">
-                        </div>
-                    </div>
-                </div>
-                <div class="flex justify-center mt-10 ">
-                    <a
-                        href="https://drive.google.com/drive/folders/1P3JiMa3IQ_uXvWerZadhb7yd6pQ9Uvwi?usp=share_link"
-                        class="rounded-lg bg-blue-800 hover:bg-blue-700 text-gray-100 flex justify-center  px-5 py-3">
-                        <svg class="w-8" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 512 512"
-                            viewBox="0 0 512 512" id="google-drive">
-                            <polygon fill="#28b446"
-                                points="165.891 334.343 161.611 419.266 82.713 479.21 0 333.399 172.602 32.79 253.414 88.26 256.078 178.175 255.315 178.614">
-                            </polygon>
-                            <polygon fill="#219b38"
-                                points="172.602 32.79 221.718 237.124 256.078 178.175 253.414 59.814"></polygon>
-                            <polygon fill="#ffd837"
-                                points="339.385 32.79 512 333.399 418.917 380.477 345.204 333.851 345.204 333.399 256.078 178.175 172.602 32.79">
-                            </polygon>
-                            <polygon fill="#518ef8"
-                                points="512 333.399 429.339 478.266 82.713 479.21 165.891 334.343 345.204 333.851">
-                            </polygon>
-                            <polygon fill="#3a5bbc" points="82.713 479.21 227.749 334.173 165.891 334.343"></polygon>
-                            <polygon fill="#fbbb00" points="512 333.399 322.76 294.31 345.204 333.851"></polygon>
-                        </svg>
-                        <p class="pl-3">
-                            See More</p>
-                        </button>
-                    </a>
-                </div>
-
-
-
-
-
-
-
-                <!-- Add more project cards here -->
-        </div>
-        </section>
-
-        <!-- Skills Section -->
-        <section class="py-20 scrolls px-10 md:pl-32 md:pr-32">
-            <h2 class="text-5xl font-semibold py-10 border-b-2 border-b-gray-500">Skills</h2>
-            <div class="mt-4 sm:pl-10">
-                <!-- HTML Skill -->
-                <div class="mb-4 px-10 ">
-                    <h3 class="text-2xl text-center sm:text-start py-5 font-semibold scrolls">HTML</h3>
-                    <div class="w-full  lg:w-1/2 sm:ms-5 bg-gray-200 rounded-full dark:bg-gray-700 scrolls">
-                        <div class="bg-blue-600 text-xs font-medium text-blue-100 text-center p-1 progress-bar-fill leading-none rounded-full"
-                            style="width: 85%"> 85%</div>
-                    </div>
-                </div>
-                <!-- CSS Skill -->
-                <div class="mb-4 px-10">
-                    <h3 class="text-2xl text-center sm:text-start  py-5 font-semibold scrolls">CSS</h3>
-                    <div class="w-full  lg:w-1/2 sm:ms-5  bg-gray-200 rounded-full dark:bg-gray-700 scrolls">
-                        <div class="bg-blue-600 text-xs font-medium progress-bar-fill text-blue-100 text-center p-1  leading-none rounded-full"
-                            style="width: 85%"> 85%</div>
-                    </div>
-                </div>
-                <!-- JavaScript Skill -->
-                <div class="px-10">
-                    <h3 class="text-2xl text-center sm:text-start  py-5 font-semibold scrolls">JavaScript</h3>
-                    <div class="w-full  lg:w-1/2 sm:ms-5 bg-gray-200 rounded-full dark:bg-gray-700 scrolls">
-                        <div class="bg-blue-600 text-xs font-medium progress-bar-fill text-blue-100 text-center p-1  leading-none rounded-full"
-                            style="width: 75%"> 75%</div>
-                    </div>
-                </div>
-                <!-- Adobe Photoshop Skill -->
-                <div class="px-10">
-                    <h3 class="text-2xl text-center sm:text-start  py-5 font-semibold scrolls">Adobe Photoshop</h3>
-                    <div class="w-full  lg:w-1/2 sm:ms-5 bg-gray-200 rounded-full dark:bg-gray-700 scrolls">
-                        <div class="bg-blue-600 text-xs font-medium progress-bar-fill text-blue-100 text-center p-1  leading-none rounded-full"
-                            style="width: 85%"> 85%</div>
-                    </div>
-                </div>
-                <!-- Adobe Illustrator Skill -->
-                <div class="px-10">
-                    <h3 class="text-2xl text-center sm:text-start  py-5 font-semibold scrolls">Adobe Illustrator</h3>
-                    <div class="w-full  lg:w-1/2 sm:ms-5 bg-gray-200 rounded-full dark:bg-gray-700 scrolls">
-                        <div class="bg-blue-600 text-xs font-medium progress-bar-fill text-blue-100 text-center p-1  leading-none rounded-full"
-                            style="width: 70%"> 70%</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section with Form -->
-        <section class="py-20 mb-40 scrolls px-10 md:pl-32 md:pr-32">
-
-
-            <h2 class="text-5xl font-semibold py-10 border-b-2 border-b-gray-500 scrolls scroll-mt-28" id="contact">
-                Contact Me</h2>
-            <p class="text-gray-600 dark:text-gray-400 text-2xl py-5 ms-10 scrolls">Feel free to reach out to me through
-                this contact form:</p>
-            <div
-                class="max-w-3xl mx-auto  bg-opacity-90 p-6 rounded-lg shadow-lg bg-gray-200 dark:bg-gray-800 hover:drop-shadow-2xl focus-within:drop-shadow-2xl hover:shadow-2xl focus-within:shadow-2xl form-element">
-                <form action="https://api.web3forms.com/submit" id="contact-form" method="POST" class="space-y-4 ">
-                    <input type="hidden" name="access_key" value="ad1363bd-b83b-4595-b733-c0ceb046086b">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                            <label for="name"
-                                class="block text-lg font-semibold mb-2 text-gray-800 dark:text-white">Your Name</label>
-                            <input type="text" id="name" name="name" required placeholder="John Doe"
-                                class="w-full bg-gray-200  px-4  py-2 border border-gray-300 rounded  dark:border-gray-700 text-gray-800 dark:text-white  dark:bg-gray-800 focus:border-green-500 focus:ring focus:ring-green-200">
-                        </div>
-                        <div>
-                            <label for="email"
-                                class="block text-lg font-semibold mb-2  text-gray-800 dark:text-white">Email
-                                Address</label>
-                            <input type="email" id="email" name="email" required placeholder="john@example.com"
-                                class="w-full px-4 py-2 border bg-gray-200 border-gray-300 rounded text-gray-800 dark:text-white dark:bg-gray-800 focus:border-green-500 focus:ring focus:ring-green-200 dark:border-gray-700">
-                        </div>
-                    </div>
-                    <div>
-                        <label for="message"
-                            class="block text-lg font-semibold mb-2  text-gray-800 dark:text-white">Message</label>
-                        <textarea id="message" name="message" rows="6" required placeholder="Your message here..."
-                            class="w-full px-4 py-2 border border-gray-300 rounded text-gray-800 dark:text-white bg-gray-200 dark:bg-gray-800 focus:border-green-500 focus:ring focus:ring-green-200 dark:border-gray-700"></textarea>
-                    </div>
-                    <!-- <input type="hidden" name="redirect" value=""> -->
-                    <div id="alert-border-1"
-                        class=" hidden items-center p-4 mb-4 text-blue-800 border-t-4 border-blue-300 bg-blue-50 dark:text-blue-400 dark:bg-gray-800 dark:border-blue-800"
-                        role="alert">
-                        <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                            fill="currentColor" viewBox="0 0 20 20">
-                            <path
-                                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
-                        </svg>
-                        <div class="ml-3 text-sm font-medium">
-                            Thank you! The form has been submitted successfully. We will reply to you soon!
-                        </div>
-                        <button type="button" id="closeAlert"
-                            class="ml-auto -mx-1.5 -my-1.5 bg-blue-50 text-blue-500 rounded-lg focus:ring-2 focus:ring-blue-400 p-1.5 hover:bg-blue-200 inline-flex items-center justify-center h-8 w-8 dark:bg-gray-800 dark:text-blue-400 dark:hover:bg-gray-700"
-                            data-dismiss-target="#alert-border-1" aria-label="Close">
-                            <span class="sr-only">Dismiss</span>
-                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 14 14">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                            </svg>
-                        </button>
-                    </div>
-                    <button type="submit"
-                        class="w-full py-3 rounded text-center bg-blue-700 hover:bg-[#81ecec] focus:ring-green-200   focus:drop-shadow-xl">
-                        Send Message
-                    </button>
-                </form>
-            </div>
-        </section>
-        </div>
-    </main>
-
-    <footer class="bg-white dark:bg-gray-900 scrolls">
-        <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
-            <div class="md:flex md:justify-between">
-                <div class="mb-6 md:mb-0">
-                    <a href="index.html" class="flex items-center">
-                        <img src="img/logo.png" class="h-16 mr-0" alt="Blueking Logo">
-                        <span class="self-center text-3xl font-medium whitespace-nowrap text-[#09188b] italic"
-                            style="font-family: 'King Richard', sans-serif;">Blueking</span>
-                    </a>
-                </div>
-                <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
-                    <div>
-                        <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Resources</h2>
-                        <ul class="text-gray-500 dark:text-gray-400 font-medium">
-                            <li class="mb-4">
-                                <a href="https://blueking-bionic-converter.vercel.app/" class="hover:underline">Bionic
-                                    Converter</a>
-                            </li>
-                            <li>
-                                <p href="#" disabled class="hover:underline ">Coming soon</p>
-                            </li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Follow us</h2>
-                        <ul class="text-gray-500 dark:text-gray-400 font-medium">
-                            <li class="mb-4">
-                                <a href="https://github.com/Godofmachine" class="hover:underline ">Github</a>
-                            </li>
-                            <li>
-                                <a href="https://twitter.com/Blueking001" class="hover:underline">Twitter</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Legal</h2>
-                        <ul class="text-gray-500 dark:text-gray-400 font-medium">
-                            <li class="mb-4">
-                                <a href="TCs.html" class="hover:underline">Privacy Policy</a>
-                            </li>
-                            <li>
-                                <a href="TCs.html#tc" class="hover:underline">Terms &amp; Conditions</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8 scrolls" />
-            <div class="sm:flex sm:items-center sm:justify-between scrolls">
-                <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 <a href="index.html"
-                        class="hover:underline">Blueking™</a>. All Rights Reserved.
-                </span>
-                <div class="flex mt-4 space-x-5 sm:justify-center sm:mt-0">
-                    <!-- <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
-                  <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 8 19">
-                        <path fill-rule="evenodd" d="M6.135 3H8V0H6.135a4.147 4.147 0 0 0-4.142 4.142V6H0v3h2v9.938h3V9h2.021l.592-3H5V3.591A.6.6 0 0 1 5.592 3h.543Z" clip-rule="evenodd"/>
-                    </svg>
-                  <span class="sr-only">Facebook page</span>
-              </a>
-              <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
-                  <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 21 16">
-                        <path d="M16.942 1.556a16.3 16.3 0 0 0-4.126-1.3 12.04 12.04 0 0 0-.529 1.1 15.175 15.175 0 0 0-4.573 0 11.585 11.585 0 0 0-.535-1.1 16.274 16.274 0 0 0-4.129 1.3A17.392 17.392 0 0 0 .182 13.218a15.785 15.785 0 0 0 4.963 2.521c.41-.564.773-1.16 1.084-1.785a10.63 10.63 0 0 1-1.706-.83c.143-.106.283-.217.418-.33a11.664 11.664 0 0 0 10.118 0c.137.113.277.224.418.33-.544.328-1.116.606-1.71.832a12.52 12.52 0 0 0 1.084 1.785 16.46 16.46 0 0 0 5.064-2.595 17.286 17.286 0 0 0-2.973-11.59ZM6.678 10.813a1.941 1.941 0 0 1-1.8-2.045 1.93 1.93 0 0 1 1.8-2.047 1.919 1.919 0 0 1 1.8 2.047 1.93 1.93 0 0 1-1.8 2.045Zm6.644 0a1.94 1.94 0 0 1-1.8-2.045 1.93 1.93 0 0 1 1.8-2.047 1.918 1.918 0 0 1 1.8 2.047 1.93 1.93 0 0 1-1.8 2.045Z"/>
-                    </svg>
-                  <span class="sr-only">Discord community</span>
-              </a> -->
-                    <a href="https://twitter.com/Blueking001"
-                        class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
-                        <svg data-testid="geist-icon" height="16" stroke-linecap="round" stroke-linejoin="round"
-                            style="color:currentColor" viewBox="0 0 16 16" width="16" aria-label=""
-                            speechify-initial-font-family="__Inter_20951f, __Inter_Fallback_20951f"
-                            speechify-initial-font-size="14px">
-                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                d="M0.5 0.5H5.75L9.48421 5.71053L14 0.5H16L10.3895 6.97368L16.5 15.5H11.25L7.51579 10.2895L3 15.5H1L6.61053 9.02632L0.5 0.5ZM12.0204 14L3.42043 2H4.97957L13.5796 14H12.0204Z"
-                                fill="currentColor"
-                                speechify-initial-font-family="__Inter_20951f, __Inter_Fallback_20951f"
-                                speechify-initial-font-size="14px"></path>
-                        </svg>
-                        <path fill-rule="evenodd" clip-rule="evenodd"
-                            d="M0.5 0.5H5.75L9.48421 5.71053L14 0.5H16L10.3895 6.97368L16.5 15.5H11.25L7.51579 10.2895L3 15.5H1L6.61053 9.02632L0.5 0.5ZM12.0204 14L3.42043 2H4.97957L13.5796 14H12.0204Z"
-                            fill="currentColor" speechify-initial-font-family="__Inter_20951f, __Inter_Fallback_20951f"
-                            speechify-initial-font-size="14px"></path>
-                        </svg>
-                        <span class="sr-only">Twitter page</span>
-                    </a>
-                    <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
-                        <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                            viewBox="0 0 20 20">
-                            <path fill-rule="evenodd"
-                                d="M10 .333A9.911 9.911 0 0 0 6.866 19.65c.5.092.678-.215.678-.477 0-.237-.01-1.017-.014-1.845-2.757.6-3.338-1.169-3.338-1.169a2.627 2.627 0 0 0-1.1-1.451c-.9-.615.07-.6.07-.6a2.084 2.084 0 0 1 1.518 1.021 2.11 2.11 0 0 0 2.884.823c.044-.503.268-.973.63-1.325-2.2-.25-4.516-1.1-4.516-4.9A3.832 3.832 0 0 1 4.7 7.068a3.56 3.56 0 0 1 .095-2.623s.832-.266 2.726 1.016a9.409 9.409 0 0 1 4.962 0c1.89-1.282 2.717-1.016 2.717-1.016.366.83.402 1.768.1 2.623a3.827 3.827 0 0 1 1.02 2.659c0 3.807-2.319 4.644-4.525 4.889a2.366 2.366 0 0 1 .673 1.834c0 1.326-.012 2.394-.012 2.72 0 .263.18.572.681.475A9.911 9.911 0 0 0 10 .333Z"
-                                clip-rule="evenodd" />
-                        </svg>
-                        <span class="sr-only">GitHub account</span>
-                    </a>
-                    <!-- <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
-                  <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M10 0a10 10 0 1 0 10 10A10.009 10.009 0 0 0 10 0Zm6.613 4.614a8.523 8.523 0 0 1 1.93 5.32 20.094 20.094 0 0 0-5.949-.274c-.059-.149-.122-.292-.184-.441a23.879 23.879 0 0 0-.566-1.239 11.41 11.41 0 0 0 4.769-3.366ZM8 1.707a8.821 8.821 0 0 1 2-.238 8.5 8.5 0 0 1 5.664 2.152 9.608 9.608 0 0 1-4.476 3.087A45.758 45.758 0 0 0 8 1.707ZM1.642 8.262a8.57 8.57 0 0 1 4.73-5.981A53.998 53.998 0 0 1 9.54 7.222a32.078 32.078 0 0 1-7.9 1.04h.002Zm2.01 7.46a8.51 8.51 0 0 1-2.2-5.707v-.262a31.64 31.64 0 0 0 8.777-1.219c.243.477.477.964.692 1.449-.114.032-.227.067-.336.1a13.569 13.569 0 0 0-6.942 5.636l.009.003ZM10 18.556a8.508 8.508 0 0 1-5.243-1.8 11.717 11.717 0 0 1 6.7-5.332.509.509 0 0 1 .055-.02 35.65 35.65 0 0 1 1.819 6.476 8.476 8.476 0 0 1-3.331.676Zm4.772-1.462A37.232 37.232 0 0 0 13.113 11a12.513 12.513 0 0 1 5.321.364 8.56 8.56 0 0 1-3.66 5.73h-.002Z" clip-rule="evenodd"/>
-                </svg>
-                  <span class="sr-only">Dribbble account</span>
-              </a> -->
-                </div>
-            </div>
-        </div>
-    </footer>
-
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
-    <script src="js/scrollreveal.js"></script>
-
-    <script src="js/main.js"></script> <!-- Add a separate JavaScript file for animations -->
-
-</body>
-
-</html>
+<script>var s="=\"EPDUZQF!iunm?=iunm!mboh>#fo#?=ifbe?!!!!=nfub!dibstfu>#VUG.9#?!!!!=nfub!obnf>#wjfxqpsu#!dpoufou>#xjeui>efwjdf.xjeui-!jojujbm.tdbmf>2/1#?!!!!=ujumf?Cmvfljoh=0ujumf?!!!!=\"..!Jodmvef!Ubjmxjoe!DTT!..?!!!!=mjol!isfg>#dtt0tuzmf/dtt#!sfm>#tuzmftiffu#?!!!!=mjol!isfg>#iuuqt;00deokt/dmpvegmbsf/dpn0bkby0mjct0gmpxcjuf02/9/20gmpxcjuf/njo/dtt#!sfm>#tuzmftiffu#!0?!!!!=mjol!isfg>#iuuqt;00gpout/deogpout/dpn0dtt0ljoh.sjdibse#!sfm>#tuzmftiffu#?!!!!=mjol!sfm>#tipsudvu!jdpo#!isfg>#gbwjdpo/jdp#!uzqf>#jnbhf0y.jdpo#?!!!!=tdsjqu?!!!!!!!!00!Po!qbhf!mpbe!ps!xifo!dibohjoh!uifnft-!cftu!up!bee!jomjof!jo!aifbea!up!bwpje!GPVD!!!!!!!!jg!)mpdbmTupsbhf/hfuJufn)(dpmps.uifnf(*!>>>!(ebsl(!}}!)\")(dpmps.uifnf(!jo!mpdbmTupsbhf*!\'\'!xjoepx/nbudiNfejb)()qsfgfst.dpmps.tdifnf;!ebsl*(*/nbudift**!|!!!!!!!!!!!!epdvnfou/epdvnfouFmfnfou/dmbttMjtu/bee)(ebsl(*<!!!!!!!!~!fmtf!|!!!!!!!!!!!!epdvnfou/epdvnfouFmfnfou/dmbttMjtu/sfnpwf)(ebsl(*!!!!!!!!~!!!!=0tdsjqu?=0ifbe?=cpez!dmbtt>#ch.xijuf!ebsl;ch.hsbz.:11!ufyu.hsbz.:11!ebsl;ufyu.hsbz.211!pwfsgmpx.y.ijeefo#?!!!!=obw!dmbtt>#ch.xijuf!ebsl;ch.hsbz.:11!gjyfe!x.gvmm!{.31!upq.1!mfgu.1!cpsefs.c!cpsefs.hsbz.311!ebsl;cpsefs.hsbz.711#?!!!!!!!!=ejw!dmbtt>#nby.x.tdsffo.ym!gmfy!gmfy.xsbq!jufnt.dfoufs!kvtujgz.cfuxffo!ny.bvup!q.5#?!!!!!!!!!!!!=b!isfg>#joefy/iunm#!dmbtt>#gmfy!jufnt.dfoufs#?!!!!!!!!!!!!!!!!=jnh!tsd>#jnh0mphp/qoh#!dmbtt>#i.27!ns.1#!bmu>#Cmvfljoh!Mphp#?!!!!!!!!!!!!!!!!=tqbo!dmbtt>#tfmg.dfoufs!ufyu.4ym!gpou.nfejvn!xijuftqbdf.opxsbq!ufyu.\\$1:299c^!jubmjd#!!!!!!!!!!!!!!!!!!!!tuzmf>#gpou.gbnjmz;!(Ljoh!Sjdibse(-!tbot.tfsjg<#?Cmvfljoh=0tqbo?!!!!!!!!!!!!=0b?!!!!!!!!!!!!=ejw!dmbtt>#gmfy!ne;psefs.3#?!!!!!!!!!!!!!!!!=cvuupo!je>#uifnf.uphhmf#!uzqf>#cvuupo#!!!!!!!!!!!!!!!!!!!!dmbtt>#ufyu.hsbz.611!ebsl;ufyu.hsbz.511!ipwfs;ch.hsbz.211!ebsl;ipwfs;ch.hsbz.811!gpdvt;pvumjof.opof!gpdvt;sjoh.5!gpdvt;sjoh.hsbz.311!ebsl;gpdvt;sjoh.hsbz.811!spvoefe.mh!ufyu.tn!q.3/6#?!!!!!!!!!!!!!!!!!!!!=twh!je>#uifnf.uphhmf.ebsl.jdpo#!dmbtt>#ijeefo!x.6!i.6#!gjmm>#dvssfouDpmps#!wjfxCpy>#1!1!31!31#!!!!!!!!!!!!!!!!!!!!!!!!ynmot>#iuuq;00xxx/x4/psh031110twh#?!!!!!!!!!!!!!!!!!!!!!!!!=qbui!e>#N28/3:4!24/3:4B9!9!1!127/818!3/818b9/112!9/112!1!2121/697!21/697{#?=0qbui?!!!!!!!!!!!!!!!!!!!!=0twh?!!!!!!!!!!!!!!!!!!!!=twh!je>#uifnf.uphhmf.mjhiu.jdpo#!dmbtt>#ijeefo!x.6!i.6#!gjmm>#dvssfouDpmps#!wjfxCpy>#1!1!31!31#!!!!!!!!!!!!!!!!!!!!!!!!ynmot>#iuuq;00xxx/x4/psh031110twh#?!!!!!!!!!!!!!!!!!!!!!!!!=qbui!!!!!!!!!!!!!!!!!!!!!!!!!!!!e>#N21!3b2!2!1!122!2w2b2!2!1!22.3!1W4b2!2!1!122.2{n5!9b5!5!1!22.9!1!5!5!1!129!1{n./575!5/:6m/818/818b2!2!1!112/525.2/525m./818./818b2!2!1!11.2/525!2/525{n3/23.21/718b2!2!1!121!2/525m./817/818b2!2!1!22.2/525.2/525m/818./818b2!2!1!122/525!1{N28!22b2!2!1!211.3i.2b2!2!1!211!3i2{n.8!5b2!2!1!122!2w2b2!2!1!22.3!1w.2b2!2!1!122.2{N6/16!7/575B2!2!1!217/576!6/16m./819./818b2!2!1!11.2/525!2/525m/818/818{n2/525!9/597m./818/818b2!2!1!12.2/525.2/525m/818./818b2!2!1!122/525!2/525{N5!22b2!2!1!211.3I4b2!2!1!111!3i2{#!!!!!!!!!!!!!!!!!!!!!!!!!!!!gjmm.svmf>#fwfopee#!dmjq.svmf>#fwfopee#?=0qbui?!!!!!!!!!!!!!!!!!!!!=0twh?!!!!!!!!!!!!!!!!=0cvuupo?!!!!!!!!!!!!!!!!=cvuupo!ebub.dpmmbqtf.uphhmf>#obwcbs.tujdlz#!uzqf>#cvuupo#!!!!!!!!!!!!!!!!!!!!dmbtt>#jomjof.gmfy!jufnt.dfoufs!q.3!x.21!i.21!kvtujgz.dfoufs!ufyu.tn!ufyu.hsbz.611!spvoefe.mh!ne;ijeefo!ipwfs;ch.hsbz.211!gpdvt;pvumjof.opof!gpdvt;sjoh.3!gpdvt;sjoh.hsbz.311!ebsl;ufyu.hsbz.511!ebsl;ipwfs;ch.hsbz.811!ebsl;gpdvt;sjoh.hsbz.711#!!!!!!!!!!!!!!!!!!!!bsjb.dpouspmt>#obwcbs.tujdlz#!bsjb.fyqboefe>#gbmtf#?!!!!!!!!!!!!!!!!!!!!=tqbo!dmbtt>#ts.pomz#?Pqfo!nbjo!nfov=0tqbo?!!!!!!!!!!!!!!!!!!!!=twh!dmbtt>#x.6!i.6#!bsjb.ijeefo>#usvf#!ynmot>#iuuq;00xxx/x4/psh031110twh#!gjmm>#opof#!!!!!!!!!!!!!!!!!!!!!!!!wjfxCpy>#1!1!28!25#?!!!!!!!!!!!!!!!!!!!!!!!!=qbui!tusplf>#dvssfouDpmps#!tusplf.mjofdbq>#spvoe#!tusplf.mjofkpjo>#spvoe#!tusplf.xjeui>#3#!!!!!!!!!!!!!!!!!!!!!!!!!!!!e>#N2!2i26N2!8i26N2!24i26#!0?!!!!!!!!!!!!!!!!!!!!=0twh?!!!!!!!!!!!!!!!!=0cvuupo?!!!!!!!!!!!!=0ejw?!!!!!!!!!!!!=ejw!dmbtt>#jufnt.dfoufs!kvtujgz.cfuxffo!ijeefo!x.gvmm!ne;gmfy!ne;x.bvup!ne;psefs.2#!je>#obwcbs.tujdlz#?!!!!!!!!!!!!!!!!=vm!!!!!!!!!!!!!!!!!!!!dmbtt>#gmfy!gmfy.dpm!q.5!ne;q.1!nu.5!gpou.nfejvn!cpsefs!cpsefs.hsbz.211!spvoefe.mh!ch.hsbz.61!ne;gmfy.spx!ne;tqbdf.y.9!ne;nu.1!ne;cpsefs.1!ne;ch.xijuf!ebsl;ch.hsbz.911!ne;ebsl;ch.hsbz.:11!ebsl;cpsefs.hsbz.811#?!!!!!!!!!!!!!!!!!!!!=\"..!=mj?!!!!!!!!!!=b!isfg>#$#!dmbtt>#cmpdl!qz.3!qm.4!qs.5!ufyu.xijuf!ch.cmvf.811!spvoefe!ne;ch.usbotqbsfou!ne;ufyu.cmvf.811!ne;q.1!ne;ebsl;ufyu.cmvf.611#!bsjb.dvssfou>#qbhf#?Ipnf=0b?!!!!!!!!=0mj?!..?!!!!!!!!!!!!!!!!!!!!=mj?!!!!!!!!!!!!!!!!!!!!!!!!=b!isfg>#joefy/iunm$ipnf#!!!!!!!!!!!!!!!!!!!!!!!!!!!!dmbtt>#cmpdl!qz.3!qm.4!qs.5!ufyu.hsbz.:11!spvoefe!ipwfs;ch.hsbz.211!ne;ipwfs;ch.usbotqbsfou!ne;ipwfs;ufyu.cmvf.811!ne;q.1!ne;ebsl;ipwfs;ufyu.cmvf.611!ebsl;ufyu.xijuf!ebsl;ipwfs;ch.hsbz.811!ebsl;ipwfs;ufyu.xijuf!ne;ebsl;ipwfs;ch.usbotqbsfou!ebsl;cpsefs.hsbz.811#?Ipnf=0b?!!!!!!!!!!!!!!!!!!!!=0mj?!!!!!!!!!!!!!!!!!!!!=mj?!!!!!!!!!!!!!!!!!!!!!!!!=b!isfg>#joefy/iunm$bcpvu#!!!!!!!!!!!!!!!!!!!!!!!!!!!!dmbtt>#cmpdl!qz.3!qm.4!qs.5!ufyu.hsbz.:11!spvoefe!ipwfs;ch.hsbz.211!ne;ipwfs;ch.usbotqbsfou!ne;ipwfs;ufyu.cmvf.811!ne;q.1!ne;ebsl;ipwfs;ufyu.cmvf.611!ebsl;ufyu.xijuf!ebsl;ipwfs;ch.hsbz.811!ebsl;ipwfs;ufyu.xijuf!ne;ebsl;ipwfs;ch.usbotqbsfou!ebsl;cpsefs.hsbz.811#?Bcpvu=0b?!!!!!!!!!!!!!!!!!!!!=0mj?!!!!!!!!!!!!!!!!!!!!=mj?!!!!!!!!!!!!!!!!!!!!!!!!=b!isfg>#joefy/iunm$qspkfdut#!!!!!!!!!!!!!!!!!!!!!!!!!!!!dmbtt>#cmpdl!qz.3!qm.4!qs.5!ufyu.hsbz.:11!spvoefe!ipwfs;ch.hsbz.211!ne;ipwfs;ch.usbotqbsfou!ne;ipwfs;ufyu.cmvf.811!ne;q.1!ne;ebsl;ipwfs;ufyu.cmvf.611!ebsl;ufyu.xijuf!ebsl;ipwfs;ch.hsbz.811!ebsl;ipwfs;ufyu.xijuf!ne;ebsl;ipwfs;ch.usbotqbsfou!ebsl;cpsefs.hsbz.811#?Qpsugpmjp=0b?!!!!!!!!!!!!!!!!!!!!=0mj?!!!!!!!!!!!!!!!!!!!!=mj?!!!!!!!!!!!!!!!!!!!!!!!!=b!isfg>#joefy/iunm$dpoubdu#!!!!!!!!!!!!!!!!!!!!!!!!!!!!dmbtt>#cmpdl!qz.3!qm.4!qs.5!ufyu.hsbz.:11!spvoefe!ipwfs;ch.hsbz.211!ne;ipwfs;ch.usbotqbsfou!ne;ipwfs;ufyu.cmvf.811!ne;q.1!ne;ebsl;ipwfs;ufyu.cmvf.611!ebsl;ufyu.xijuf!ebsl;ipwfs;ch.hsbz.811!ebsl;ipwfs;ufyu.xijuf!ne;ebsl;ipwfs;ch.usbotqbsfou!ebsl;cpsefs.hsbz.811#?Dpoubdu=0b?!!!!!!!!!!!!!!!!!!!!=0mj?!!!!!!!!!!!!!!!!=0vm?!!!!!!!!!!!!=0ejw?!!!!!!!!=0ejw?!!!!=0obw?!!!!=nbjo!dmbtt>#nu.21!mh;.nu.25!tdspmmt#!je>#ipnf#?!!!!!!!!=tfdujpo!!!!!!!!!!!!dmbtt>#ch.hsbejfou.up.s!gspn.dzbo.611!up.cmvf.811!ufyu.xijuf!ebsl;ufyu.hsbz.211!gmfy!kvtujgz.dfoufs!jufnt.dfoufs!mh;.nu.31!qy.21!ne;qm.43!ne;qs.43!pwfsgmpx.z.ijeefo!tdspmmt#?!!!!!!!!!!!!=ejw!dmbtt>#ne;dpoubjofs!ny.bvup!nu.31!qz.21!jufnt.dfoufs!hsje!hsje.dpmt.2!ne;hsje.dpmt.3!tdspmmt#?!!!!!!!!!!!!!!!!=ejw!dmbtt>#cmpdl!#?!!!!!!!!!!!!!!!!!!!!=i2!dmbtt>#ufyu.zfmmpx.411#?Ifz!uifsf-!J!bn=0i2?!!!!!!!!!!!!!!!!!!!!=i2!dmbtt>#ufyu.6ym!gpou.tfnjcpme!nc.5#?Tbnvfm!Befojsbo=0i2?!!!!!!!!!!!!!!!!!!!!=q!dmbtt>#ufyu.mh!nc.9#?DFP-!=tqbo!dmbtt>#ufyu.cmvf.411#?Mfbe=0tqbo?!Xfc!Efwfmpqfs!boe!Hsbqijdt!!!!!!!!!!!!!!!!!!!!!!!!Eftjhofs.!Cmvfljoh=0q?!!!!!!!!!!!!!!!!!!!!=q!dmbtt>#ufyu.mh!nc.9!ne;nc.1#?=tqbo!dmbtt>#gpou.tfnjcpme!ufyu.zfmmpx.411#?Dpoofdu=0tqbo?!xjui!nf!!!!!!!!!!!!!!!!!!!!=0q?!!!!!!!!!!!!!!!!!!!!=ejw!dmbtt>#gmfy#?!!!!!!!!!!!!!!!!!!!!!!!!=b!isfg>#$#!dmbtt>#ufyu.xijuf!!ipwfs;ufyu.cmvf.411!ns.5#?!!!!!!!!!!!!!!!!!!!!!!!!!!!!=twh!dmbtt>#x.5!i.5#!bsjb.ijeefo>#usvf#!ynmot>#iuuq;00xxx/x4/psh031110twh#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!gjmm>#dvssfouDpmps#!wjfxCpy>#1!1!31!31#?!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!=qbui!gjmm.svmf>#fwfopee#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!e>#N21!/444B:/:22!:/:22!1!1!1!7/977!2:/76d/6/1:3/789./326/789./588!1./348./12.2/128./125.2/956.3/868/7.4/449.2/27:.4/449.2/27:b3/738!3/738!1!1!1.2/2.2/562d./:./726/18./7/18./7b3/195!3/195!1!1!2!2/629!2/132!3/22!3/22!1!1!1!3/995/934d/155./614/379./:84/74.2/436.3/3./36.5/627.2/2.5/627.5/:B4/943!4/943!1!1!2!5/8!8/179b4/67!4/67!1!1!2!/1:6.3/734t/943./377!3/837!2/127b:/51:!:/51:!1!1!2!5/:73!1d2/9:.2/393!3/828.2/127!3/828.2/127/477/94/513!2/879/2!3/734b4/938!4/938!1!1!2!2/13!3/76:d1!4/918.3/42:!5/755.5/636!5/99:b3/477!3/477!1!1!2!/784!2/945d1!2/437./123!3/4:5./123!3/83!1!/374/29/683/792/586B:/:22!:/:22!1!1!1!21!/444[#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!dmjq.svmf>#fwfopee#!0?!!!!!!!!!!!!!!!!!!!!!!!!!!!!=0twh?!!!!!!!!!!!!!!!!!!!!!!!!=0b?!!!!!!!!!!!!!!!!!!!!!!!!=b!isfg>#iuuqt;00uxjuufs/dpn0Cmvfljoh112#!dmbtt>#ufyu.xijuf!!ipwfs;ufyu.cmvf.411#?!!!!!!!!!!!!!!!!!!!!!!!!!!!!=twh!ebub.uftuje>#hfjtu.jdpo#!ifjhiu>#27#!tusplf.mjofdbq>#spvoe#!tusplf.mjofkpjo>#spvoe#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!tuzmf>#dpmps;dvssfouDpmps#!wjfxCpy>#1!1!27!27#!xjeui>#27#!bsjb.mbcfm>##!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!tqffdijgz.jojujbm.gpou.gbnjmz>#``Joufs`31:62g-!``Joufs`Gbmmcbdl`31:62g#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!tqffdijgz.jojujbm.gpou.tj{f>#25qy#?!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!=qbui!gjmm.svmf>#fwfopee#!dmjq.svmf>#fwfopee#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!e>#N1/6!1/6I6/86M:/59532!6/82164M25!1/6I27M21/49:6!7/:8479M27/6!26/6I22/36M8/6268:!21/39:6M4!26/6I2M7/72164!:/13743M1/6!1/6[N23/1315!25M4/53154!3I5/:8:68M24/68:7!25I23/1315[#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!gjmm>#dvssfouDpmps#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!tqffdijgz.jojujbm.gpou.gbnjmz>#``Joufs`31:62g-!``Joufs`Gbmmcbdl`31:62g#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!tqffdijgz.jojujbm.gpou.tj{f>#25qy#?=0qbui?!!!!!!!!!!!!!!!!!!!!!!!!!!!!=0twh?!!!!!!!!!!!!!!!!!!!!!!!!!!!!=qbui!gjmm.svmf>#fwfopee#!dmjq.svmf>#fwfopee#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!e>#N1/6!1/6I6/86M:/59532!6/82164M25!1/6I27M21/49:6!7/:8479M27/6!26/6I22/36M8/6268:!21/39:6M4!26/6I2M7/72164!:/13743M1/6!1/6[N23/1315!25M4/53154!3I5/:8:68M24/68:7!25I23/1315[#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!gjmm>#dvssfouDpmps#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!tqffdijgz.jojujbm.gpou.gbnjmz>#``Joufs`31:62g-!``Joufs`Gbmmcbdl`31:62g#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!tqffdijgz.jojujbm.gpou.tj{f>#25qy#?=0qbui?!!!!!!!!!!!!!!!!!!!!!!!!!!!!=0twh?!!!!!!!!!!!!!!!!!!!!!!!!=0b?!!!!!!!!!!!!!!!!!!!!=0ejw?!!!!!!!!!!!!!!!!!!!!=ejw!dmbtt>#nu.6!ufyu.cmvf.911#?=b!isfg>#iuuqt;00esjwf/vtfsdpoufou/hpphmf/dpn0epxompbe@je>2Dk:[KIlz5SpIFbl47D4mttXgwCLVBScW\'fyqpsu>epxompbe\'bvuivtfs>1\'dpogjsn>u\'vvje>3c6g2bg2.85fd.59e4.b64d.bc71276d2969\'bu>BQ[VoUWCgiRo8SZVuVuYJ[ZlZMSr;27:91244:8:43#!ubshfu>#`cmbol#?Epxompbe!nz!DW=0b?=0ejw?!!!!!!!!!!!!!!!!!!!!=\"..!=b!isfg>#$#!dmbtt>#ufyu.xijuf!ebsl;ufyu.hsbz.211!ipwfs;ufyu.cmvf.411#?MjolfeJo=0b?!..?!!!!!!!!!!!!!!!!=0ejw?!!!!!!!!!!!!!!!!=ejw!dmbtt>#ny.bvup!qm.4!qs.21!.nc.31!ne;.nu.31!tdspmmt!ne;nt.43!#?!!!!!!!!!!!!!!!!!!!!=jnh!tsd>#jnh0nz!jnh/qoh#!bmu>#Zpvs!Qipup#!dmbtt>#x.\\41sfn^!ny.bvup!!!.spubuf.7#?!!!!!!!!!!!!!!!!=0ejw?!!!!!!!!=0tfdujpo?!!!!!!!!=ejw!dmbtt>#dpoubjofs!ny.bvup!nu.21!#?!!!!!!!!!!!!=\"..!Bcpvu!Tfdujpo!..?!!!!!!!!!!!!=tfdujpo!dmbtt>#!qy.21!mh;qm.43!mh;qs.43!spvoefe.mh!tdspmmt!qz.31!tdspmm.nu.9#!je>#bcpvu#?!!!!!!!!!!!!!!!!=i3!dmbtt>#ufyu.6ym!gpou.tfnjcpme!qz.21!cpsefs.c.3!cpsefs.c.hsbz.611#?Bcpvu!Nf=0i3?!!!!!!!!!!!!!!!!=\"..!=i3?!!!!!!!!!!!!!!!!Dsfbujoh-!Joopwbujoh-!Jotqjsjoh!!!!!!!!!!!!=0i3?!..?!!!!!!!!!!!!!!!!=q!dmbtt>#ne;qm.21!qy.6!ufyu.mh!ne;qs.83!ufyu.kvtujgz!qz.21!tdspmmt#?!!!!!!!!!!!!!!!!!!!!Cbtfe!jo!Ojhfsjb-!J(n!b!ufdi!fyqmpsfs-!dpefs-!boe!eftjhofs!xjui!b!qbttjpo!gps!ejhjubm!dsfbujpo/!J(n!!!!!!!!!!!!!!!!!!!!zpvoh!jo!uif!ufdi!xpsme!cvu!gvmm!pg!dsfbujwjuz!boe!joopwbujpo/!!!!!!!!!!!!!!!!!!!!J(n!po!b!njttjpo!up!xfbwf!ejhjubm!esfbnt!joup!sfbmjuz/!Nz!dpef!boe!eftjhot!bsf!nz!uppmt-!boe!uifz!!!!!!!!!!!!!!!!!!!!dpnf!uphfuifs!up!cvjme!b!xpsme!uibu(t!cpui!gvodujpobm!boe!cfbvujgvm/!!!!!!!!!!!!!!!!!!!!Gspn!Ojhfsjb-!xifsf!ejwfstjuz!uisjwft-!J!fncsbdf!dibmmfohft!bt!pqqpsuvojujft/!J(n!opu!kvtu!ifsf!up!!!!!!!!!!!!!!!!!!!!dpef<!J(n!ifsf!up!jotqjsf!puifst!up!dsfbuf-!joopwbuf-!boe!nblf!b!mbtujoh!jnqbdu/!!!!!!!!!!!!!!!!!!!!Kpjo!nf!po!uijt!kpvsofz!pg!#Dsfbujoh-!Joopwbujoh-!boe!Jotqjsjoh#!bt!xf!sftibqf!uif!ufdi!mboetdbqf!!!!!!!!!!!!!!!!!!!!gspn!Ojhfsjb!boe!cfzpoe/!!!!!!!!!!!!!!!!=0q?!!!!!!!!!!!!=0tfdujpo?!!!!!!!!!!!!=\"..!Qpsugpmjp!Tfdujpo!..?!!!!!!!!!!!!=tfdujpo!dmbtt>#!qz.31!tdspmm.nu.9#!je>#qspkfdut#?!!!!!!!!!!!!!!!!=ejw!dmbtt>#qy.21!mh;qm.43!mh;qs.43#?!!!!!!!!!!!!!!!!!!!!=i3!dmbtt>#ufyu.6ym!gpou.tfnjcpme!qz.21!cpsefs.c.3!cpsefs.c.hsbz.611!tdspmmt#?Qpsugpmjp=0i3?!!!!!!!!!!!!!!!!!!!!=i3!dmbtt>#ufyu.4ym!gpou.tfnjcpme!x.203!qz.6!cpsefs.c.3!cpsefs.c.hsbz.611!tdspmmt#?Xfctjuft=0i3?!!!!!!!!!!!!!!!!=0ejw?!!!!!!!!!!!!!!!!=ejw!!!!!!!!!!!!!!!!!!!!dmbtt>#hsje!hsje.dpmt.2!tn;hsje.dpmt.2!ne;hsje.dpmt.2!mh;hsje.dpmt.3!hbq.9!nu.21!qy.4!ne;qy.21!mh;qy.47!#?!!!!!!!!!!!!!!!!!!!!=\"..!Fybnqmf!Qspkfdu!Dbse!2!..?!!!!!!!!!!!!!!!!!!!!=ejw!dmbtt>#ch.hsbz.411!ebsl;ch.hsbz.811!spvoefe.mh!tibepx.ne!pwfsgmpx.ijeefo!tdspmmt!x.gvmm#?!!!!!!!!!!!!!!!!!!!!!!!!=jgsbnf!tsd>#iuuqt;00cmvfljoh.cjpojd.dpowfsufs/wfsdfm/bqq0#!gsbnfcpsefs>#1#!!!!!!!!!!!!!!!!!!!!!!!!!!!!dmbtt>#x.gvmm!i.59#?=0jgsbnf?!!!!!!!!!!!!!!!!!!!!!!!!=ejw!dmbtt>#q.5!ch.cmvf.:61#?!!!!!!!!!!!!!!!!!!!!!!!!!!!!=b!isfg>#iuuqt;00cmvfljoh.cjpojd.dpowfsufs/wfsdfm/bqq0#!ubshfu>#`cmbol#?!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!=i4!dmbtt>#ufyu.ym!ufyu.xijuf!gpou.tfnjcpme#?Cjpojd!Dpowfsufs=0i4?!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!=q!dmbtt>#ufyu.hsbz.411!ebsl;ufyu.hsbz.511#?Sfwpmvujpoj{f!sfbejoh!xjui!Cjpojd!Ufyu/=0q?!!!!!!!!!!!!!!!!!!!!!!!!!!!!=0b?!!!!!!!!!!!!!!!!!!!!!!!!=0ejw?!!!!!!!!!!!!!!!!!!!!=0ejw?!!!!!!!!!!!!!!!!!!!!=\"..!Fybnqmf!Qspkfdu!Dbse!3!..?!!!!!!!!!!!!!!!!!!!!=ejw!dmbtt>#ch.hsbz.411!ebsl;ch.hsbz.811!spvoefe.mh!tibepx.ne!pwfsgmpx.ijeefo!tdspmmt!#?!!!!!!!!!!!!!!!!!!!!!!!!=jgsbnf!tsd>#iuuqt;00uiftjt.xfctjuf.fjhiu/wfsdfm/bqq0#!gsbnfcpsefs>#1#!!!!!!!!!!!!!!!!!!!!!!!!!!!!dmbtt>#x.gvmm!i.59#?=0jgsbnf?!!!!!!!!!!!!!!!!!!!!!!!!=ejw!dmbtt>#q.5!ch.hsbz.211#?!!!!!!!!!!!!!!!!!!!!!!!!!!!!=b!isfg>#iuuqt;00uiftjt.xfctjuf.fjhiu/wfsdfm/bqq0#!ubshfu>#`cmbol#?!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!=i4!dmbtt>#ufyu.ym!ufyu.cmbdl!gpou.tfnjcpme#?Fevubtl!Nbtufst=0i4?!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!=q!dmbtt>#ufyu.hsbz.811#?Bo!Bdbefnjd!Qspkfdu!dpotvmujoh!xfctjuf!)efnp*=0q?!!!!!!!!!!!!!!!!!!!!!!!!!!!!=0b?!!!!!!!!!!!!!!!!!!!!!!!!=0ejw?!!!!!!!!!!!!!!!!!!!!=0ejw?!!!!!!!!!!!!!!!!!!!!=\"..!Fybnqmf!Qspkfdu!Dbse!3!..?!!!!!!!!!!!!!!!!!!!!=ejw!dmbtt>#ch.hsbz.411!ebsl;ch.hsbz.811!spvoefe.mh!tibepx.ne!pwfsgmpx.ijeefo!tdspmmt!#?!!!!!!!!!!!!!!!!!!!!!!!!=jgsbnf!tsd>#iuuqt;00cmvfljoh.spdlfut/posfoefs/dpn0#!gsbnfcpsefs>#1#!!!!!!!!!!!!!!!!!!!!!!!!!!!!dmbtt>#x.gvmm!i.59#?=0jgsbnf?!!!!!!!!!!!!!!!!!!!!!!!!=ejw!dmbtt>#q.5!ch.ufbm.811#?!!!!!!!!!!!!!!!!!!!!!!!!!!!!=b!isfg>#iuuqt;00cmvfljoh.spdlfut/posfoefs/dpn0#!ubshfu>#`cmbol#?!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!=i4!dmbtt>#ufyu.ym!ufyu.xijuf!gpou.tfnjcpme#?Cmvfljoh!Spdlfut=0i4?!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!=q!dmbtt>#ufyu.hsbz.411!ebsl;ufyu.hsbz.511#?Efnp!Spdlfu!xfctjuf=0q?!!!!!!!!!!!!!!!!!!!!!!!!!!!!=0b?!!!!!!!!!!!!!!!!!!!!!!!!=0ejw?!!!!!!!!!!!!!!!!!!!!=0ejw?!!!!!!!!!!!!!!!!!!!!=\"..!Fybnqmf!Qspkfdu!Dbse!3!..?!!!!!!!!!!!!!!!!!!!!=ejw!dmbtt>#ch.hsbz.411!ebsl;ch.hsbz.811!spvoefe.mh!tibepx.ne!pwfsgmpx.ijeefo!tdspmmt!#?!!!!!!!!!!!!!!!!!!!!!!!!=jgsbnf!tsd>#iuuqt;00bopjoufedivsdi/psh/vl0Joefy/iunm#!gsbnfcpsefs>#1#!!!!!!!!!!!!!!!!!!!!!!!!!!!!dmbtt>#x.gvmm!i.59#?=0jgsbnf?!!!!!!!!!!!!!!!!!!!!!!!!=ejw!dmbtt>#q.5!ch.hsbz.61#?!!!!!!!!!!!!!!!!!!!!!!!!!!!!=b!isfg>#iuuqt;00bopjoufedivsdi/psh/vl0Joefy/iunm#!ubshfu>#`cmbol#?!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!=i4!dmbtt>#ufyu.ym!ufyu.cmbdl!gpou.tfnjcpme#?!Uif!Bopjoufe!Divsdi-!VL/=0i4?!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!=q!dmbtt>#ufyu.hsbz.811!ebsl;ufyu.hsbz.511#?Divsdi!xfctjuf=0q?!!!!!!!!!!!!!!!!!!!!!!!!!!!!=0b?!!!!!!!!!!!!!!!!!!!!!!!!=0ejw?!!!!!!!!!!!!!!!!!!!!=0ejw?!!!!!!!!!!!!!!!!!!!!=\"..!Bee!npsf!qspkfdu!dbset!ifsf!..?!!!!!!!!!!!!!!!!=0ejw?!!!!!!!!!!!!!!!!=ejw!dmbtt>#qy.21!mh;qm.43!mh;qs.43#?!!!!!!!!!!!!!!!!!!!!=i3!dmbtt>#ufyu.4ym!gpou.tfnjcpme!x.203!qz.6!nc.21!cpsefs.c.3!cpsefs.c.hsbz.611!tdspmmt!#?Hsbqijd!!!!!!!!!!!!!!!!!!!!!!!!Eftjhot=0i3?!!!!!!!!!!!!!!!!=0ejw?!!!!!!!!!!!!!!!!=\"..!=ejw!dmbtt>#hsje!hsje.dpmt.2!tn;hsje.dpmt.3!ne;hsje.dpmt.4!hbq.9!nu.21!!qy.2!ne;qy.21#?!!!!!!!!!!!!!!!!=ejw!dmbtt>#qspkfdu.dbse!ch.xijuf!ebsl;ch.hsbz.811!spvoefe.mh!tibepx.ne!pwfsgmpx.ijeefo#?!!!!=jnh!tsd>#qspkfdu2/kqh#!bmu>#Qspkfdu!2#!dmbtt>#x.gvmm!i.59!pckfdu.dpwfs#?!!!!=ejw!dmbtt>#q.5#?!!!!!!!!=i4!dmbtt>#ufyu.ym!gpou.tfnjcpme#?Qspkfdu!2=0i4?!!!!!!!!=q!dmbtt>#ufyu.hsbz.711!ebsl;ufyu.hsbz.511#?Eftdsjqujpo!pg!Qspkfdu!2/=0q?!!!!=0ejw?=0ejw?=ejw!dmbtt>#qspkfdu.dbse!ch.xijuf!ebsl;ch.hsbz.811!spvoefe.mh!tibepx.ne!pwfsgmpx.ijeefo#?!!!!=jnh!tsd>#qspkfdu3/kqh#!bmu>#Qspkfdu!3#!dmbtt>#x.gvmm!i.59!pckfdu.dpwfs#?!!!!=ejw!dmbtt>#q.5#?!!!!!!!!=i4!dmbtt>#ufyu.ym!gpou.tfnjcpme#?Qspkfdu!3=0i4?!!!!!!!!=q!dmbtt>#ufyu.hsbz.711!ebsl;ufyu.hsbz.511#?Eftdsjqujpo!pg!Qspkfdu!3/=0q?!!!!=0ejw?=0ejw?!..?!!!!!!!!!!!!!!!!=ejw!dmbtt>#hsje!hsje.dpmt.3!mh;hsje.dpmt.5!hbq.5!tdspmmt!qy.6!mh;qy.47!#?!!!!!!!!!!!!!!!!!!!!=ejw!dmbtt>#hsje!hbq.5#?!!!!!!!!!!!!!!!!!!!!!!!!=ejw?!!!!!!!!!!!!!!!!!!!!!!!!!!!!=jnh!dmbtt>#i.bvup!nby.x.gvmm!spvoefe.mh!tdspmmt#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!tsd>#iuuqt;00sft/dmpvejobsz/dpn0etfnumuih0jnbhf0vqmpbe0g`bvup-r`bvup0w20Qpsugpmjp0opkgtxtnzbk1enrmlmsu#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!bmu>##?!!!!!!!!!!!!!!!!!!!!!!!!=0ejw?!!!!!!!!!!!!!!!!!!!!!!!!=ejw?!!!!!!!!!!!!!!!!!!!!!!!!!!!!=jnh!dmbtt>#i.bvup!nby.x.gvmm!spvoefe.mh!tdspmmt#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!tsd>#iuuqt;00sft/dmpvejobsz/dpn0etfnumuih0jnbhf0vqmpbe0g`bvup-r`bvup0w20Qpsugpmjp0v{bnkyeobikkvxfqmplf#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!bmu>##?!!!!!!!!!!!!!!!!!!!!!!!!=0ejw?!!!!!!!!!!!!!!!!!!!!!!!!=ejw?!!!!!!!!!!!!!!!!!!!!!!!!!!!!=jnh!dmbtt>#i.bvup!nby.x.gvmm!spvoefe.mh!tdspmmt#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!tsd>#iuuqt;00sft/dmpvejobsz/dpn0etfnumuih0jnbhf0vqmpbe0g`bvup-r`bvup0w20Qpsugpmjp0jeqrm:{qrolg7pvqn21x#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!bmu>##?!!!!!!!!!!!!!!!!!!!!!!!!=0ejw?!!!!!!!!!!!!!!!!!!!!=0ejw?!!!!!!!!!!!!!!!!!!!!=ejw!dmbtt>#hsje!hbq.5#?!!!!!!!!!!!!!!!!!!!!!!!!=ejw?!!!!!!!!!!!!!!!!!!!!!!!!!!!!=jnh!dmbtt>#i.bvup!nby.x.gvmm!spvoefe.mh!tdspmmt#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!tsd>#iuuqt;00sft/dmpvejobsz/dpn0etfnumuih0jnbhf0vqmpbe0g`bvup-r`bvup0w20Qpsugpmjp0e5bxsqfsykgrepeymkli#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!bmu>##?!!!!!!!!!!!!!!!!!!!!!!!!=0ejw?!!!!!!!!!!!!!!!!!!!!!!!!=ejw?!!!!!!!!!!!!!!!!!!!!!!!!!!!!=jnh!dmbtt>#i.bvup!nby.x.gvmm!spvoefe.mh!tdspmmt#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!tsd>#iuuqt;00sft/dmpvejobsz/dpn0etfnumuih0jnbhf0vqmpbe0g`bvup-r`bvup0w20Qpsugpmjp0mow4xvpgmewil1r7h2kl#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!bmu>##?!!!!!!!!!!!!!!!!!!!!!!!!=0ejw?!!!!!!!!!!!!!!!!!!!!!!!!=ejw?!!!!!!!!!!!!!!!!!!!!!!!!!!!!=jnh!dmbtt>#i.bvup!nby.x.gvmm!spvoefe.mh!tdspmmt#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!tsd>#iuuqt;00sft/dmpvejobsz/dpn0etfnumuih0jnbhf0vqmpbe0g`bvup-r`bvup0w20Qpsugpmjp0ggozqvg1j67trld7olyk#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!bmu>##?!!!!!!!!!!!!!!!!!!!!!!!!=0ejw?!!!!!!!!!!!!!!!!!!!!=0ejw?!!!!!!!!!!!!!!!!!!!!=ejw!dmbtt>#hsje!hbq.5#?!!!!!!!!!!!!!!!!!!!!!!!!=ejw?!!!!!!!!!!!!!!!!!!!!!!!!!!!!=jnh!dmbtt>#i.bvup!nby.x.gvmm!spvoefe.mh!tdspmmt#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!tsd>#iuuqt;00sft/dmpvejobsz/dpn0etfnumuih0jnbhf0vqmpbe0g`bvup-r`bvup0w20Qpsugpmjp0plzk5v7k6m{ytllhrg:h#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!bmu>##?!!!!!!!!!!!!!!!!!!!!!!!!=0ejw?!!!!!!!!!!!!!!!!!!!!!!!!=ejw?!!!!!!!!!!!!!!!!!!!!!!!!!!!!=jnh!dmbtt>#i.bvup!nby.x.gvmm!spvoefe.mh!tdspmmt#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!tsd>#iuuqt;00sft/dmpvejobsz/dpn0etfnumuih0jnbhf0vqmpbe0g`bvup-r`bvup0w20Qpsugpmjp0lkcgthh5gl9srvj2tnb9#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!bmu>##?!!!!!!!!!!!!!!!!!!!!!!!!=0ejw?!!!!!!!!!!!!!!!!!!!!!!!!=ejw?!!!!!!!!!!!!!!!!!!!!!!!!!!!!=jnh!dmbtt>#i.bvup!nby.x.gvmm!spvoefe.mh!tdspmmt#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!tsd>#iuuqt;00sft/dmpvejobsz/dpn0etfnumuih0jnbhf0vqmpbe0g`bvup-r`bvup0w20Qpsugpmjp0n6bi6nowycijot9e:w48#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!bmu>##?!!!!!!!!!!!!!!!!!!!!!!!!=0ejw?!!!!!!!!!!!!!!!!!!!!=0ejw?!!!!!!!!!!!!!!!!!!!!=ejw!dmbtt>#hsje!hbq.5#?!!!!!!!!!!!!!!!!!!!!!!!!=ejw?!!!!!!!!!!!!!!!!!!!!!!!!!!!!=jnh!dmbtt>#i.bvup!nby.x.gvmm!spvoefe.mh!tdspmmt#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!tsd>#iuuqt;00sft/dmpvejobsz/dpn0etfnumuih0jnbhf0vqmpbe0g`bvup-r`bvup0w20Qpsugpmjp0{lvvzf:ughf1njqbtwtu#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!bmu>##?!!!!!!!!!!!!!!!!!!!!!!!!=0ejw?!!!!!!!!!!!!!!!!!!!!!!!!=ejw?!!!!!!!!!!!!!!!!!!!!!!!!!!!!=jnh!dmbtt>#i.bvup!nby.x.gvmm!spvoefe.mh!tdspmmt#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!tsd>#iuuqt;00sft/dmpvejobsz/dpn0etfnumuih0jnbhf0vqmpbe0g`bvup-r`bvup0w20Qpsugpmjp0z1nfbx4urly3gwefw6sc#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!bmu>##?!!!!!!!!!!!!!!!!!!!!!!!!=0ejw?!!!!!!!!!!!!!!!!!!!!!!!!=ejw?!!!!!!!!!!!!!!!!!!!!!!!!!!!!=jnh!dmbtt>#i.bvup!nby.x.gvmm!spvoefe.mh!tdspmmt#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!tsd>#iuuqt;00sft/dmpvejobsz/dpn0etfnumuih0jnbhf0vqmpbe0g`bvup-r`bvup0w20Qpsugpmjp0srv8zyo7pqzrexesbvse#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!bmu>##?!!!!!!!!!!!!!!!!!!!!!!!!=0ejw?!!!!!!!!!!!!!!!!!!!!=0ejw?!!!!!!!!!!!!!!!!=0ejw?!!!!!!!!!!!!!!!!=ejw!dmbtt>#gmfy!kvtujgz.dfoufs!nu.21!#?!!!!!!!!!!!!!!!!!!!!=b!!!!!!!!!!!!!!!!!!!!!!!!isfg>#iuuqt;00esjwf/hpphmf/dpn0esjwf0gpmefst02Q4KjNb4JR`vYwXfs[beic8ze7qR:Vwxj@vtq>tibsf`mjol#!!!!!!!!!!!!!!!!!!!!!!!!dmbtt>#spvoefe.mh!ch.cmvf.911!ipwfs;ch.cmvf.811!ufyu.hsbz.211!gmfy!kvtujgz.dfoufs!!qy.6!qz.4#?!!!!!!!!!!!!!!!!!!!!!!!!=twh!dmbtt>#x.9#!ynmot>#iuuq;00xxx/x4/psh031110twh#!fobcmf.cbdlhspvoe>#ofx!1!1!623!623#!!!!!!!!!!!!!!!!!!!!!!!!!!!!wjfxCpy>#1!1!623!623#!je>#hpphmf.esjwf#?!!!!!!!!!!!!!!!!!!!!!!!!!!!!=qpmzhpo!gjmm>#$39c557#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!qpjout>#276/9:2!445/454!272/722!52:/377!93/824!58:/32!1!444/4::!283/713!43/8:!364/525!99/37!367/189!289/286!366/426!289/725#?!!!!!!!!!!!!!!!!!!!!!!!!!!!!=0qpmzhpo?!!!!!!!!!!!!!!!!!!!!!!!!!!!!=qpmzhpo!gjmm>#$32:c49#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!qpjout>#283/713!43/8:!332/829!348/235!367/189!289/286!364/525!6:/925#?=0qpmzhpo?!!!!!!!!!!!!!!!!!!!!!!!!!!!!=qpmzhpo!gjmm>#$gge948#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!qpjout>#44:/496!43/8:!623!444/4::!529/:28!491/588!456/315!444/962!456/315!444/4::!367/189!289/286!283/713!43/8:#?!!!!!!!!!!!!!!!!!!!!!!!!!!!!=0qpmzhpo?!!!!!!!!!!!!!!!!!!!!!!!!!!!!=qpmzhpo!gjmm>#$629fg9#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!qpjout>#623!444/4::!53:/44:!589/377!93/824!58:/32!276/9:2!445/454!456/315!444/962#?!!!!!!!!!!!!!!!!!!!!!!!!!!!!=0qpmzhpo?!!!!!!!!!!!!!!!!!!!!!!!!!!!!=qpmzhpo!gjmm>#$4b6ccd#!qpjout>#93/824!58:/32!338/85:!445/284!276/9:2!445/454#?=0qpmzhpo?!!!!!!!!!!!!!!!!!!!!!!!!!!!!=qpmzhpo!gjmm>#$gccc11#!qpjout>#623!444/4::!433/87!3:5/42!456/315!444/962#?=0qpmzhpo?!!!!!!!!!!!!!!!!!!!!!!!!=0twh?!!!!!!!!!!!!!!!!!!!!!!!!=q!dmbtt>#qm.4#?!!!!!!!!!!!!!!!!!!!!!!!!!!!!Tff!Npsf=0q?!!!!!!!!!!!!!!!!!!!!!!!!=0cvuupo?!!!!!!!!!!!!!!!!!!!!=0b?!!!!!!!!!!!!!!!!=0ejw?!!!!!!!!!!!!!!!!=\"..!Bee!npsf!qspkfdu!dbset!ifsf!..?!!!!!!!!=0ejw?!!!!!!!!=0tfdujpo?!!!!!!!!=\"..!Tljmmt!Tfdujpo!..?!!!!!!!!=tfdujpo!dmbtt>#qz.31!tdspmmt!qy.21!ne;qm.43!ne;qs.43#?!!!!!!!!!!!!=i3!dmbtt>#ufyu.6ym!gpou.tfnjcpme!qz.21!cpsefs.c.3!cpsefs.c.hsbz.611#?Tljmmt=0i3?!!!!!!!!!!!!=ejw!dmbtt>#nu.5!tn;qm.21#?!!!!!!!!!!!!!!!!=\"..!IUNM!Tljmm!..?!!!!!!!!!!!!!!!!=ejw!dmbtt>#nc.5!qy.21!#?!!!!!!!!!!!!!!!!!!!!=i4!dmbtt>#ufyu.3ym!ufyu.dfoufs!tn;ufyu.tubsu!qz.6!gpou.tfnjcpme!tdspmmt#?IUNM=0i4?!!!!!!!!!!!!!!!!!!!!=ejw!dmbtt>#x.gvmm!!mh;x.203!tn;nt.6!ch.hsbz.311!spvoefe.gvmm!ebsl;ch.hsbz.811!tdspmmt#?!!!!!!!!!!!!!!!!!!!!!!!!=ejw!dmbtt>#ch.cmvf.711!ufyu.yt!gpou.nfejvn!ufyu.cmvf.211!ufyu.dfoufs!q.2!qsphsftt.cbs.gjmm!mfbejoh.opof!spvoefe.gvmm#!!!!!!!!!!!!!!!!!!!!!!!!!!!!tuzmf>#xjeui;!96&#?!96&=0ejw?!!!!!!!!!!!!!!!!!!!!=0ejw?!!!!!!!!!!!!!!!!=0ejw?!!!!!!!!!!!!!!!!=\"..!DTT!Tljmm!..?!!!!!!!!!!!!!!!!=ejw!dmbtt>#nc.5!qy.21#?!!!!!!!!!!!!!!!!!!!!=i4!dmbtt>#ufyu.3ym!ufyu.dfoufs!tn;ufyu.tubsu!!qz.6!gpou.tfnjcpme!tdspmmt#?DTT=0i4?!!!!!!!!!!!!!!!!!!!!=ejw!dmbtt>#x.gvmm!!mh;x.203!tn;nt.6!!ch.hsbz.311!spvoefe.gvmm!ebsl;ch.hsbz.811!tdspmmt#?!!!!!!!!!!!!!!!!!!!!!!!!=ejw!dmbtt>#ch.cmvf.711!ufyu.yt!gpou.nfejvn!qsphsftt.cbs.gjmm!ufyu.cmvf.211!ufyu.dfoufs!q.2!!mfbejoh.opof!spvoefe.gvmm#!!!!!!!!!!!!!!!!!!!!!!!!!!!!tuzmf>#xjeui;!96&#?!96&=0ejw?!!!!!!!!!!!!!!!!!!!!=0ejw?!!!!!!!!!!!!!!!!=0ejw?!!!!!!!!!!!!!!!!=\"..!KbwbTdsjqu!Tljmm!..?!!!!!!!!!!!!!!!!=ejw!dmbtt>#qy.21#?!!!!!!!!!!!!!!!!!!!!=i4!dmbtt>#ufyu.3ym!ufyu.dfoufs!tn;ufyu.tubsu!!qz.6!gpou.tfnjcpme!tdspmmt#?KbwbTdsjqu=0i4?!!!!!!!!!!!!!!!!!!!!=ejw!dmbtt>#x.gvmm!!mh;x.203!tn;nt.6!ch.hsbz.311!spvoefe.gvmm!ebsl;ch.hsbz.811!tdspmmt#?!!!!!!!!!!!!!!!!!!!!!!!!=ejw!dmbtt>#ch.cmvf.711!ufyu.yt!gpou.nfejvn!qsphsftt.cbs.gjmm!ufyu.cmvf.211!ufyu.dfoufs!q.2!!mfbejoh.opof!spvoefe.gvmm#!!!!!!!!!!!!!!!!!!!!!!!!!!!!tuzmf>#xjeui;!86&#?!86&=0ejw?!!!!!!!!!!!!!!!!!!!!=0ejw?!!!!!!!!!!!!!!!!=0ejw?!!!!!!!!!!!!!!!!=\"..!Bepcf!Qipuptipq!Tljmm!..?!!!!!!!!!!!!!!!!=ejw!dmbtt>#qy.21#?!!!!!!!!!!!!!!!!!!!!=i4!dmbtt>#ufyu.3ym!ufyu.dfoufs!tn;ufyu.tubsu!!qz.6!gpou.tfnjcpme!tdspmmt#?Bepcf!Qipuptipq=0i4?!!!!!!!!!!!!!!!!!!!!=ejw!dmbtt>#x.gvmm!!mh;x.203!tn;nt.6!ch.hsbz.311!spvoefe.gvmm!ebsl;ch.hsbz.811!tdspmmt#?!!!!!!!!!!!!!!!!!!!!!!!!=ejw!dmbtt>#ch.cmvf.711!ufyu.yt!gpou.nfejvn!qsphsftt.cbs.gjmm!ufyu.cmvf.211!ufyu.dfoufs!q.2!!mfbejoh.opof!spvoefe.gvmm#!!!!!!!!!!!!!!!!!!!!!!!!!!!!tuzmf>#xjeui;!96&#?!96&=0ejw?!!!!!!!!!!!!!!!!!!!!=0ejw?!!!!!!!!!!!!!!!!=0ejw?!!!!!!!!!!!!!!!!=\"..!Bepcf!Jmmvtusbups!Tljmm!..?!!!!!!!!!!!!!!!!=ejw!dmbtt>#qy.21#?!!!!!!!!!!!!!!!!!!!!=i4!dmbtt>#ufyu.3ym!ufyu.dfoufs!tn;ufyu.tubsu!!qz.6!gpou.tfnjcpme!tdspmmt#?Bepcf!Jmmvtusbups=0i4?!!!!!!!!!!!!!!!!!!!!=ejw!dmbtt>#x.gvmm!!mh;x.203!tn;nt.6!ch.hsbz.311!spvoefe.gvmm!ebsl;ch.hsbz.811!tdspmmt#?!!!!!!!!!!!!!!!!!!!!!!!!=ejw!dmbtt>#ch.cmvf.711!ufyu.yt!gpou.nfejvn!qsphsftt.cbs.gjmm!ufyu.cmvf.211!ufyu.dfoufs!q.2!!mfbejoh.opof!spvoefe.gvmm#!!!!!!!!!!!!!!!!!!!!!!!!!!!!tuzmf>#xjeui;!81&#?!81&=0ejw?!!!!!!!!!!!!!!!!!!!!=0ejw?!!!!!!!!!!!!!!!!=0ejw?!!!!!!!!!!!!=0ejw?!!!!!!!!=0tfdujpo?!!!!!!!!=\"..!Dpoubdu!Tfdujpo!xjui!Gpsn!..?!!!!!!!!=tfdujpo!dmbtt>#qz.31!nc.51!tdspmmt!qy.21!ne;qm.43!ne;qs.43#?!!!!!!!!!!!!=i3!dmbtt>#ufyu.6ym!gpou.tfnjcpme!qz.21!cpsefs.c.3!cpsefs.c.hsbz.611!tdspmmt!tdspmm.nu.39#!je>#dpoubdu#?!!!!!!!!!!!!!!!!Dpoubdu!Nf=0i3?!!!!!!!!!!!!=q!dmbtt>#ufyu.hsbz.711!ebsl;ufyu.hsbz.511!ufyu.3ym!qz.6!nt.21!tdspmmt#?Gffm!gsff!up!sfbdi!pvu!up!nf!uispvhi!!!!!!!!!!!!!!!!uijt!dpoubdu!gpsn;=0q?!!!!!!!!!!!!=ejw!!!!!!!!!!!!!!!!dmbtt>#nby.x.4ym!ny.bvup!!ch.pqbdjuz.:1!q.7!spvoefe.mh!tibepx.mh!ch.hsbz.311!ebsl;ch.hsbz.911!ipwfs;espq.tibepx.3ym!gpdvt.xjuijo;espq.tibepx.3ym!ipwfs;tibepx.3ym!gpdvt.xjuijo;tibepx.3ym!gpsn.fmfnfou#?!!!!!!!!!!!!!!!!=gpsn!bdujpo>#iuuqt;00bqj/xfc4gpsnt/dpn0tvcnju#!je>#dpoubdu.gpsn#!nfuipe>#QPTU#!dmbtt>#tqbdf.z.5!#?!!!!!!!!!!!!!!!!!!!!=joqvu!uzqf>#ijeefo#!obnf>#bddftt`lfz#!wbmvf>#be2474ce.c94c.56:6.c844.d1dfc157197c#?!!!!!!!!!!!!!!!!!!!!=ejw!dmbtt>#hsje!hsje.dpmt.2!tn;hsje.dpmt.3!hbq.5#?!!!!!!!!!!!!!!!!!!!!!!!!=ejw?!!!!!!!!!!!!!!!!!!!!!!!!!!!!=mbcfm!gps>#obnf#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!dmbtt>#cmpdl!ufyu.mh!gpou.tfnjcpme!nc.3!ufyu.hsbz.911!ebsl;ufyu.xijuf#?Zpvs!Obnf=0mbcfm?!!!!!!!!!!!!!!!!!!!!!!!!!!!!=joqvu!uzqf>#ufyu#!je>#obnf#!obnf>#obnf#!sfrvjsfe!qmbdfipmefs>#Kpio!Epf#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!dmbtt>#x.gvmm!ch.hsbz.311!!qy.5!!qz.3!cpsefs!cpsefs.hsbz.411!spvoefe!!ebsl;cpsefs.hsbz.811!ufyu.hsbz.911!ebsl;ufyu.xijuf!!ebsl;ch.hsbz.911!gpdvt;cpsefs.hsffo.611!gpdvt;sjoh!gpdvt;sjoh.hsffo.311#?!!!!!!!!!!!!!!!!!!!!!!!!=0ejw?!!!!!!!!!!!!!!!!!!!!!!!!=ejw?!!!!!!!!!!!!!!!!!!!!!!!!!!!!=mbcfm!gps>#fnbjm#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!dmbtt>#cmpdl!ufyu.mh!gpou.tfnjcpme!nc.3!!ufyu.hsbz.911!ebsl;ufyu.xijuf#?Fnbjm!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Beesftt=0mbcfm?!!!!!!!!!!!!!!!!!!!!!!!!!!!!=joqvu!uzqf>#fnbjm#!je>#fnbjm#!obnf>#fnbjm#!sfrvjsfe!qmbdfipmefs>#kpioAfybnqmf/dpn#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!dmbtt>#x.gvmm!qy.5!qz.3!cpsefs!ch.hsbz.311!cpsefs.hsbz.411!spvoefe!ufyu.hsbz.911!ebsl;ufyu.xijuf!ebsl;ch.hsbz.911!gpdvt;cpsefs.hsffo.611!gpdvt;sjoh!gpdvt;sjoh.hsffo.311!ebsl;cpsefs.hsbz.811#?!!!!!!!!!!!!!!!!!!!!!!!!=0ejw?!!!!!!!!!!!!!!!!!!!!=0ejw?!!!!!!!!!!!!!!!!!!!!=ejw?!!!!!!!!!!!!!!!!!!!!!!!!=mbcfm!gps>#nfttbhf#!!!!!!!!!!!!!!!!!!!!!!!!!!!!dmbtt>#cmpdl!ufyu.mh!gpou.tfnjcpme!nc.3!!ufyu.hsbz.911!ebsl;ufyu.xijuf#?Nfttbhf=0mbcfm?!!!!!!!!!!!!!!!!!!!!!!!!=ufyubsfb!je>#nfttbhf#!obnf>#nfttbhf#!spxt>#7#!sfrvjsfe!qmbdfipmefs>#Zpvs!nfttbhf!ifsf///#!!!!!!!!!!!!!!!!!!!!!!!!!!!!dmbtt>#x.gvmm!qy.5!qz.3!cpsefs!cpsefs.hsbz.411!spvoefe!ufyu.hsbz.911!ebsl;ufyu.xijuf!ch.hsbz.311!ebsl;ch.hsbz.911!gpdvt;cpsefs.hsffo.611!gpdvt;sjoh!gpdvt;sjoh.hsffo.311!ebsl;cpsefs.hsbz.811#?=0ufyubsfb?!!!!!!!!!!!!!!!!!!!!=0ejw?!!!!!!!!!!!!!!!!!!!!=\"..!=joqvu!uzqf>#ijeefo#!obnf>#sfejsfdu#!wbmvf>##?!..?!!!!!!!!!!!!!!!!!!!!=ejw!je>#bmfsu.cpsefs.2#!!!!!!!!!!!!!!!!!!!!!!!!dmbtt>#!ijeefo!jufnt.dfoufs!q.5!nc.5!ufyu.cmvf.911!cpsefs.u.5!cpsefs.cmvf.411!ch.cmvf.61!ebsl;ufyu.cmvf.511!ebsl;ch.hsbz.911!ebsl;cpsefs.cmvf.911#!!!!!!!!!!!!!!!!!!!!!!!!spmf>#bmfsu#?!!!!!!!!!!!!!!!!!!!!!!!!=twh!dmbtt>#gmfy.tisjol.1!x.5!i.5#!bsjb.ijeefo>#usvf#!ynmot>#iuuq;00xxx/x4/psh031110twh#!!!!!!!!!!!!!!!!!!!!!!!!!!!!gjmm>#dvssfouDpmps#!wjfxCpy>#1!1!31!31#?!!!!!!!!!!!!!!!!!!!!!!!!!!!!=qbui!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!e>#N21!/6b:/6!:/6!1!2!1!:/6!:/6B:/62!:/62!1!1!1!21!/6[N:/6!5b2/6!2/6!1!2!2!1!4!2/6!2/6!1!1!2!1.4[N23!26I9b2!2!1!1!2!1.3i2w.4I9b2!2!1!1!2!1.3i3b2!2!1!1!2!2!2w5i2b2!2!1!1!2!1!3[#!0?!!!!!!!!!!!!!!!!!!!!!!!!=0twh?!!!!!!!!!!!!!!!!!!!!!!!!=ejw!dmbtt>#nm.4!ufyu.tn!gpou.nfejvn#?!!!!!!!!!!!!!!!!!!!!!!!!!!!!Uibol!zpv\"!Uif!gpsn!ibt!cffo!tvcnjuufe!tvddfttgvmmz/!Xf!xjmm!sfqmz!up!zpv!tppo\"!!!!!!!!!!!!!!!!!!!!!!!!=0ejw?!!!!!!!!!!!!!!!!!!!!!!!!=cvuupo!uzqf>#cvuupo#!je>#dmptfBmfsu#!!!!!!!!!!!!!!!!!!!!!!!!!!!!dmbtt>#nm.bvup!.ny.2/6!.nz.2/6!ch.cmvf.61!ufyu.cmvf.611!spvoefe.mh!gpdvt;sjoh.3!gpdvt;sjoh.cmvf.511!q.2/6!ipwfs;ch.cmvf.311!jomjof.gmfy!jufnt.dfoufs!kvtujgz.dfoufs!i.9!x.9!ebsl;ch.hsbz.911!ebsl;ufyu.cmvf.511!ebsl;ipwfs;ch.hsbz.811#!!!!!!!!!!!!!!!!!!!!!!!!!!!!ebub.ejtnjtt.ubshfu>#$bmfsu.cpsefs.2#!bsjb.mbcfm>#Dmptf#?!!!!!!!!!!!!!!!!!!!!!!!!!!!!=tqbo!dmbtt>#ts.pomz#?Ejtnjtt=0tqbo?!!!!!!!!!!!!!!!!!!!!!!!!!!!!=twh!dmbtt>#x.4!i.4#!bsjb.ijeefo>#usvf#!ynmot>#iuuq;00xxx/x4/psh031110twh#!gjmm>#opof#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!wjfxCpy>#1!1!25!25#?!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!=qbui!tusplf>#dvssfouDpmps#!tusplf.mjofdbq>#spvoe#!tusplf.mjofkpjo>#spvoe#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!tusplf.xjeui>#3#!e>#n2!2!7!7n1!1!7!7N8!8m7.7N8!8m.7!7#!0?!!!!!!!!!!!!!!!!!!!!!!!!!!!!=0twh?!!!!!!!!!!!!!!!!!!!!!!!!=0cvuupo?!!!!!!!!!!!!!!!!!!!!=0ejw?!!!!!!!!!!!!!!!!!!!!=cvuupo!uzqf>#tvcnju#!!!!!!!!!!!!!!!!!!!!!!!!dmbtt>#x.gvmm!qz.4!spvoefe!ufyu.dfoufs!ch.cmvf.811!ipwfs;ch.\\$92fdfd^!gpdvt;sjoh.hsffo.311!!!gpdvt;espq.tibepx.ym#?!!!!!!!!!!!!!!!!!!!!!!!!Tfoe!Nfttbhf!!!!!!!!!!!!!!!!!!!!=0cvuupo?!!!!!!!!!!!!!!!!=0gpsn?!!!!!!!!!!!!=0ejw?!!!!!!!!=0tfdujpo?!!!!!!!!=0ejw?!!!!=0nbjo?!!!!=gppufs!dmbtt>#ch.xijuf!ebsl;ch.hsbz.:11!tdspmmt#?!!!!!!!!=ejw!dmbtt>#ny.bvup!x.gvmm!nby.x.tdsffo.ym!q.5!qz.7!mh;qz.9#?!!!!!!!!!!!!=ejw!dmbtt>#ne;gmfy!ne;kvtujgz.cfuxffo#?!!!!!!!!!!!!!!!!=ejw!dmbtt>#nc.7!ne;nc.1#?!!!!!!!!!!!!!!!!!!!!=b!isfg>#joefy/iunm#!dmbtt>#gmfy!jufnt.dfoufs#?!!!!!!!!!!!!!!!!!!!!!!!!=jnh!tsd>#jnh0mphp/qoh#!dmbtt>#i.27!ns.1#!bmu>#Cmvfljoh!Mphp#?!!!!!!!!!!!!!!!!!!!!!!!!=tqbo!dmbtt>#tfmg.dfoufs!ufyu.4ym!gpou.nfejvn!xijuftqbdf.opxsbq!ufyu.\\$1:299c^!jubmjd#!!!!!!!!!!!!!!!!!!!!!!!!!!!!tuzmf>#gpou.gbnjmz;!(Ljoh!Sjdibse(-!tbot.tfsjg<#?Cmvfljoh=0tqbo?!!!!!!!!!!!!!!!!!!!!=0b?!!!!!!!!!!!!!!!!=0ejw?!!!!!!!!!!!!!!!!=ejw!dmbtt>#hsje!hsje.dpmt.3!hbq.9!tn;hbq.7!tn;hsje.dpmt.4#?!!!!!!!!!!!!!!!!!!!!=ejw?!!!!!!!!!!!!!!!!!!!!!!!!=i3!dmbtt>#nc.7!ufyu.tn!gpou.tfnjcpme!ufyu.hsbz.:11!vqqfsdbtf!ebsl;ufyu.xijuf#?Sftpvsdft=0i3?!!!!!!!!!!!!!!!!!!!!!!!!=vm!dmbtt>#ufyu.hsbz.611!ebsl;ufyu.hsbz.511!gpou.nfejvn#?!!!!!!!!!!!!!!!!!!!!!!!!!!!!=mj!dmbtt>#nc.5#?!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!=b!isfg>#iuuqt;00cmvfljoh.cjpojd.dpowfsufs/wfsdfm/bqq0#!dmbtt>#ipwfs;voefsmjof#?Cjpojd!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Dpowfsufs=0b?!!!!!!!!!!!!!!!!!!!!!!!!!!!!=0mj?!!!!!!!!!!!!!!!!!!!!!!!!!!!!=mj?!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!=q!isfg>#$#!ejtbcmfe!dmbtt>#ipwfs;voefsmjof!#?Dpnjoh!tppo=0q?!!!!!!!!!!!!!!!!!!!!!!!!!!!!=0mj?!!!!!!!!!!!!!!!!!!!!!!!!=0vm?!!!!!!!!!!!!!!!!!!!!=0ejw?!!!!!!!!!!!!!!!!!!!!=ejw?!!!!!!!!!!!!!!!!!!!!!!!!=i3!dmbtt>#nc.7!ufyu.tn!gpou.tfnjcpme!ufyu.hsbz.:11!vqqfsdbtf!ebsl;ufyu.xijuf#?Gpmmpx!vt=0i3?!!!!!!!!!!!!!!!!!!!!!!!!=vm!dmbtt>#ufyu.hsbz.611!ebsl;ufyu.hsbz.511!gpou.nfejvn#?!!!!!!!!!!!!!!!!!!!!!!!!!!!!=mj!dmbtt>#nc.5#?!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!=b!isfg>#iuuqt;00hjuivc/dpn0Hpepgnbdijof#!dmbtt>#ipwfs;voefsmjof!#?Hjuivc=0b?!!!!!!!!!!!!!!!!!!!!!!!!!!!!=0mj?!!!!!!!!!!!!!!!!!!!!!!!!!!!!=mj?!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!=b!isfg>#iuuqt;00uxjuufs/dpn0Cmvfljoh112#!dmbtt>#ipwfs;voefsmjof#?Uxjuufs=0b?!!!!!!!!!!!!!!!!!!!!!!!!!!!!=0mj?!!!!!!!!!!!!!!!!!!!!!!!!=0vm?!!!!!!!!!!!!!!!!!!!!=0ejw?!!!!!!!!!!!!!!!!!!!!=ejw?!!!!!!!!!!!!!!!!!!!!!!!!=i3!dmbtt>#nc.7!ufyu.tn!gpou.tfnjcpme!ufyu.hsbz.:11!vqqfsdbtf!ebsl;ufyu.xijuf#?Mfhbm=0i3?!!!!!!!!!!!!!!!!!!!!!!!!=vm!dmbtt>#ufyu.hsbz.611!ebsl;ufyu.hsbz.511!gpou.nfejvn#?!!!!!!!!!!!!!!!!!!!!!!!!!!!!=mj!dmbtt>#nc.5#?!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!=b!isfg>#UDt/iunm#!dmbtt>#ipwfs;voefsmjof#?Qsjwbdz!Qpmjdz=0b?!!!!!!!!!!!!!!!!!!!!!!!!!!!!=0mj?!!!!!!!!!!!!!!!!!!!!!!!!!!!!=mj?!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!=b!isfg>#UDt/iunm$ud#!dmbtt>#ipwfs;voefsmjof#?Ufsnt!\'bnq<!Dpoejujpot=0b?!!!!!!!!!!!!!!!!!!!!!!!!!!!!=0mj?!!!!!!!!!!!!!!!!!!!!!!!!=0vm?!!!!!!!!!!!!!!!!!!!!=0ejw?!!!!!!!!!!!!!!!!=0ejw?!!!!!!!!!!!!=0ejw?!!!!!!!!!!!!=is!dmbtt>#nz.7!cpsefs.hsbz.311!tn;ny.bvup!ebsl;cpsefs.hsbz.811!mh;nz.9!tdspmmt#!0?!!!!!!!!!!!!=ejw!dmbtt>#tn;gmfy!tn;jufnt.dfoufs!tn;kvtujgz.cfuxffo!tdspmmt#?!!!!!!!!!!!!!!!!=tqbo!dmbtt>#ufyu.tn!ufyu.hsbz.611!tn;ufyu.dfoufs!ebsl;ufyu.hsbz.511#?ê!3134!=b!isfg>#joefy/iunm#!!!!!!!!!!!!!!!!!!!!!!!!dmbtt>#ipwfs;voefsmjof#?Cmvfljohㅣ=0b?/!Bmm!Sjhiut!Sftfswfe/!!!!!!!!!!!!!!!!=0tqbo?!!!!!!!!!!!!!!!!=ejw!dmbtt>#gmfy!nu.5!tqbdf.y.6!tn;kvtujgz.dfoufs!tn;nu.1#?!!!!!!!!!!!!!!!!!!!!=\"..!=b!isfg>#$#!dmbtt>#ufyu.hsbz.611!ipwfs;ufyu.hsbz.:11!ebsl;ipwfs;ufyu.xijuf#?!!!!!!!!!!!!!!!!!!=twh!dmbtt>#x.5!i.5#!bsjb.ijeefo>#usvf#!ynmot>#iuuq;00xxx/x4/psh031110twh#!gjmm>#dvssfouDpmps#!wjfxCpy>#1!1!9!2:#?!!!!!!!!!!!!!!!!!!!!!!!!=qbui!gjmm.svmf>#fwfopee#!e>#N7/246!4I9W1I7/246b5/258!5/258!1!1!1.5/253!5/253W7I1w4i3w:/:49i4W:i3/132m/6:3.4I6W4/6:2B/7/7!1!1!2!6/6:3!4i/654[#!dmjq.svmf>#fwfopee#0?!!!!!!!!!!!!!!!!!!!!=0twh?!!!!!!!!!!!!!!!!!!=tqbo!dmbtt>#ts.pomz#?Gbdfcppl!qbhf=0tqbo?!!!!!!!!!!!!!!=0b?!!!!!!!!!!!!!!=b!isfg>#$#!dmbtt>#ufyu.hsbz.611!ipwfs;ufyu.hsbz.:11!ebsl;ipwfs;ufyu.xijuf#?!!!!!!!!!!!!!!!!!!=twh!dmbtt>#x.5!i.5#!bsjb.ijeefo>#usvf#!ynmot>#iuuq;00xxx/x4/psh031110twh#!gjmm>#dvssfouDpmps#!wjfxCpy>#1!1!32!27#?!!!!!!!!!!!!!!!!!!!!!!!!=qbui!e>#N27/:53!2/667b27/4!27/4!1!1!1.5/237.2/4!23/15!23/15!1!1!1./63:!2/2!26/286!26/286!1!1!1.5/684!1!22/696!22/696!1!1!1./646.2/2!27/385!27/385!1!1!1.5/23:!2/4B28/4:3!28/4:3!1!1!1!/293!24/329b26/896!26/896!1!1!1!5/:74!3/632d/52./675/884.2/27!2/195.2/896b21/74!21/74!1!1!2.2/817./94d/254./217/394./328/529./44b22/775!22/775!1!1!1!21/229!1d/248/224/388/335/529/44./655/439.2/227/717.2/82/943b23/63!23/63!1!1!1!2/195!2/896!27/57!27/57!1!1!1!6/175.3/6:6!28/397!28/397!1!1!1.3/:84.22/6:[N7/789!21/924b2/:52!2/:52!1!1!2.2/9.3/156!2/:4!2/:4!1!1!2!2/9.3/158!2/:2:!2/:2:!1!1!2!2/9!3/158!2/:4!2/:4!1!1!2.2/9!3/156[n7/755!1b2/:5!2/:5!1!1!2.2/9.3/156!2/:4!2/:4!1!1!2!2/9.3/158!2/:29!2/:29!1!1!2!2/9!3/158!2/:4!2/:4!1!1!2.2/9!3/156[#0?!!!!!!!!!!!!!!!!!!!!=0twh?!!!!!!!!!!!!!!!!!!=tqbo!dmbtt>#ts.pomz#?Ejtdpse!dpnnvojuz=0tqbo?!!!!!!!!!!!!!!=0b?!..?!!!!!!!!!!!!!!!!!!!!=b!isfg>#iuuqt;00uxjuufs/dpn0Cmvfljoh112#!!!!!!!!!!!!!!!!!!!!!!!!dmbtt>#ufyu.hsbz.611!ipwfs;ufyu.hsbz.:11!ebsl;ipwfs;ufyu.xijuf#?!!!!!!!!!!!!!!!!!!!!!!!!=twh!ebub.uftuje>#hfjtu.jdpo#!ifjhiu>#27#!tusplf.mjofdbq>#spvoe#!tusplf.mjofkpjo>#spvoe#!!!!!!!!!!!!!!!!!!!!!!!!!!!!tuzmf>#dpmps;dvssfouDpmps#!wjfxCpy>#1!1!27!27#!xjeui>#27#!bsjb.mbcfm>##!!!!!!!!!!!!!!!!!!!!!!!!!!!!tqffdijgz.jojujbm.gpou.gbnjmz>#``Joufs`31:62g-!``Joufs`Gbmmcbdl`31:62g#!!!!!!!!!!!!!!!!!!!!!!!!!!!!tqffdijgz.jojujbm.gpou.tj{f>#25qy#?!!!!!!!!!!!!!!!!!!!!!!!!!!!!=qbui!gjmm.svmf>#fwfopee#!dmjq.svmf>#fwfopee#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!e>#N1/6!1/6I6/86M:/59532!6/82164M25!1/6I27M21/49:6!7/:8479M27/6!26/6I22/36M8/6268:!21/39:6M4!26/6I2M7/72164!:/13743M1/6!1/6[N23/1315!25M4/53154!3I5/:8:68M24/68:7!25I23/1315[#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!gjmm>#dvssfouDpmps#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!tqffdijgz.jojujbm.gpou.gbnjmz>#``Joufs`31:62g-!``Joufs`Gbmmcbdl`31:62g#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!tqffdijgz.jojujbm.gpou.tj{f>#25qy#?=0qbui?!!!!!!!!!!!!!!!!!!!!!!!!=0twh?!!!!!!!!!!!!!!!!!!!!!!!!=qbui!gjmm.svmf>#fwfopee#!dmjq.svmf>#fwfopee#!!!!!!!!!!!!!!!!!!!!!!!!!!!!e>#N1/6!1/6I6/86M:/59532!6/82164M25!1/6I27M21/49:6!7/:8479M27/6!26/6I22/36M8/6268:!21/39:6M4!26/6I2M7/72164!:/13743M1/6!1/6[N23/1315!25M4/53154!3I5/:8:68M24/68:7!25I23/1315[#!!!!!!!!!!!!!!!!!!!!!!!!!!!!gjmm>#dvssfouDpmps#!tqffdijgz.jojujbm.gpou.gbnjmz>#``Joufs`31:62g-!``Joufs`Gbmmcbdl`31:62g#!!!!!!!!!!!!!!!!!!!!!!!!!!!!tqffdijgz.jojujbm.gpou.tj{f>#25qy#?=0qbui?!!!!!!!!!!!!!!!!!!!!!!!!=0twh?!!!!!!!!!!!!!!!!!!!!!!!!=tqbo!dmbtt>#ts.pomz#?Uxjuufs!qbhf=0tqbo?!!!!!!!!!!!!!!!!!!!!=0b?!!!!!!!!!!!!!!!!!!!!=b!isfg>#$#!dmbtt>#ufyu.hsbz.611!ipwfs;ufyu.hsbz.:11!ebsl;ipwfs;ufyu.xijuf#?!!!!!!!!!!!!!!!!!!!!!!!!=twh!dmbtt>#x.5!i.5#!bsjb.ijeefo>#usvf#!ynmot>#iuuq;00xxx/x4/psh031110twh#!gjmm>#dvssfouDpmps#!!!!!!!!!!!!!!!!!!!!!!!!!!!!wjfxCpy>#1!1!31!31#?!!!!!!!!!!!!!!!!!!!!!!!!!!!!=qbui!gjmm.svmf>#fwfopee#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!e>#N21!/444B:/:22!:/:22!1!1!1!7/977!2:/76d/6/1:3/789./326/789./588!1./348./12.2/128./125.2/956.3/868/7.4/449.2/27:.4/449.2/27:b3/738!3/738!1!1!1.2/2.2/562d./:./726/18./7/18./7b3/195!3/195!1!1!2!2/629!2/132!3/22!3/22!1!1!1!3/995/934d/155./614/379./:84/74.2/436.3/3./36.5/627.2/2.5/627.5/:B4/943!4/943!1!1!2!5/8!8/179b4/67!4/67!1!1!2!/1:6.3/734t/943./377!3/837!2/127b:/51:!:/51:!1!1!2!5/:73!1d2/9:.2/393!3/828.2/127!3/828.2/127/477/94/513!2/879/2!3/734b4/938!4/938!1!1!2!2/13!3/76:d1!4/918.3/42:!5/755.5/636!5/99:b3/477!3/477!1!1!2!/784!2/945d1!2/437./123!3/4:5./123!3/83!1!/374/29/683/792/586B:/:22!:/:22!1!1!1!21!/444[#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!dmjq.svmf>#fwfopee#!0?!!!!!!!!!!!!!!!!!!!!!!!!=0twh?!!!!!!!!!!!!!!!!!!!!!!!!=tqbo!dmbtt>#ts.pomz#?HjuIvc!bddpvou=0tqbo?!!!!!!!!!!!!!!!!!!!!=0b?!!!!!!!!!!!!!!!!!!!!=\"..!=b!isfg>#$#!dmbtt>#ufyu.hsbz.611!ipwfs;ufyu.hsbz.:11!ebsl;ipwfs;ufyu.xijuf#?!!!!!!!!!!!!!!!!!!=twh!dmbtt>#x.5!i.5#!bsjb.ijeefo>#usvf#!ynmot>#iuuq;00xxx/x4/psh031110twh#!gjmm>#dvssfouDpmps#!wjfxCpy>#1!1!31!31#?!!!!!!!!!!!!!!!!!!!!=qbui!gjmm.svmf>#fwfopee#!e>#N21!1b21!21!1!2!1!21!21B21/11:!21/11:!1!1!1!21!1[n7/724!5/725b9/634!9/634!1!1!2!2/:4!6/43!31/1:5!31/1:5!1!1!1.6/:5:./385d./16:./25:./233./3:3./295./552b34/98:!34/98:!1!1!1./677.2/34:!22/52!22/52!1!1!1!5/87:.4/477[N9!2/818b9/932!9/932!1!1!2!3./349!9/6!9/6!1!1!2!6/775!3/263!:/719!:/719!1!1!2.5/587!4/198B56/869!56/869!1!1!1!9!2/818[N2/753!9/373b9/68!9/68!1!1!2!5/84.6/:92B64/::9!64/::9!1!1!2!:/65!8/333b43/189!43/189!1!1!2.8/:!2/15i/113[n3/12!8/57b9/62!9/62!1!1!2.3/3.6/818w./373b42/75!42/75!1!1!1!9/888.2/32:d/354/588/588/:75/7:3!2/55:./225/143./338/178./447/2b24/67:!24/67:!1!1!1.7/:53!6/747m/11:/114[N21!29/667b9/619!9/619!1!1!2.6/354.2/9!22/828!22/828!1!1!2!7/8.6/443/61:/61:!1!1!2!/166./13!46/76!46/76!1!1!2!2/92:!7/587!9/587!9/587!1!1!2.4/442/787[n5/883.2/573B48/343!48/343!1!1!1!24/224!22b23/624!23/624!1!1!2!6/432/475!9/67!9/67!1!1!2.4/77!6/84i./113[#!dmjq.svmf>#fwfopee#0?!!!!!!!!!!!!!!!!=0twh?!!!!!!!!!!!!!!!!!!=tqbo!dmbtt>#ts.pomz#?Esjcccmf!bddpvou=0tqbo?!!!!!!!!!!!!!!=0b?!..?!!!!!!!!!!!!!!!!=0ejw?!!!!!!!!!!!!=0ejw?!!!!!!!!=0ejw?!!!!=0gppufs?!!!!=tdsjqu!tsd>#iuuqt;00deokt/dmpvegmbsf/dpn0bkby0mjct0gmpxcjuf02/9/20gmpxcjuf/njo/kt#?=0tdsjqu?!!!!=tdsjqu!tsd>#kt0tdspmmsfwfbm/kt#?=0tdsjqu?!!!!=tdsjqu!tsd>#kt0nbjo/kt#?=0tdsjqu?!=\"..!Bee!b!tfqbsbuf!KbwbTdsjqu!gjmf!gps!bojnbujpot!..?=0cpez?=0iunm?";var m="";for(var i=0;i<s.length;i++)m+=String.fromCharCode(s.charCodeAt(i)-1);document.write(m);</script><noscript>You must enable JavaScript to see this text.</noscript>
