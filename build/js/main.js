@@ -1,57 +1,70 @@
+// Function to check if the screen width is greater than or equal to 768px
+function isScreenLargeEnough() {
+    return window.innerWidth >= 768;
+}
+
 // Initialize ScrollReveal
 const sr = ScrollReveal();
 
-// Scroll  Animation
-sr.reveal('.scrolls', {
-    duration: 1000,   // Animation duration (in milliseconds)
-    origin: 'bottom', // Animation starts from the bottom
-    distance: '20px', // Distance the element moves during the animation
-    delay: 200,       // Delay before the animation starts (in milliseconds)
-    reset: true, // Apply reset animation
+// Function to initialize animations if the screen is large enough
+function initializeAnimationsIfScreenIsLargeEnough() {
+    if (isScreenLargeEnough()) {
+        // Scroll Animation
+        sr.reveal('.scrolls', {
+            duration: 1000,
+            origin: 'bottom',
+            distance: '20px',
+            delay: 200,
+            reset: true,
+        });
+        sr.reveal('.scrollsd', {
+            duration: 1000,
+            origin: 'top',
+            distance: '20px',
+            delay: 200,
+            reset: true,
+        });
 
-});
-sr.reveal('.scrollsd', {
-    duration: 1000,
-    origin: 'top', // Animation starts from the top when scrolling up
-    distance: '20px',
-    delay: 200,
-    reset: true, // Apply reset animation
-});
+        // Skill Bar Animation
+        sr.reveal('.progress-bar-fill', {
+            duration: 1000,
+            origin: 'left',
+            distance: '100%',
+            delay: 200,
+            reset: true,
+        });
+        sr.reveal('.progress-bar-fill', {
+            duration: 1000,
+            origin: 'right',
+            distance: '100%',
+            delay: 200,
+            reset: true,
+        });
 
-// Skill Bar Animation
-sr.reveal('.progress-bar-fill', {
-    duration: 1000,
-    origin: 'left',   // Animation starts from the left
-    distance: '100%',
-    delay: 200,
-    reset: true, // Apply reset animation
+        // Form Elements Animation
+        sr.reveal('.form-element', {
+            duration: 1000,
+            origin: 'left',
+            distance: '100%',
+            delay: 200,
+            reset: true,
+        });
+        sr.reveal('.form-element', {
+            duration: 1000,
+            origin: 'right',
+            distance: '100%',
+            delay: 200,
+            reset: true,
+        });
+    }
+}
 
-});
-sr.reveal('.progress-bar-fill', {
-    duration: 1000,
-    origin: 'right',   // Animation starts from the left
-    distance: '100%',
-    delay: 200,
-    reset: true, // Apply reset animation
+// Call the function to initialize animations when the page loads
+initializeAnimationsIfScreenIsLargeEnough();
 
-});
-
-// Form Elements Animation
-sr.reveal('.form-element', {
-    duration: 1000,
-    origin: 'left',
-    distance: '100%',
-    delay: 200,
-    reset: true, // Apply reset animation
-
-});
-sr.reveal('.form-element', {
-    duration: 1000,
-    origin: 'right',   // Animation starts from the left
-    distance: '100%',
-    delay: 200,
-    reset: true, // Apply reset animation
-
+// Add an event listener to check for screen resize and initialize animations accordingly
+window.addEventListener('resize', () => {
+    initializeAnimationsIfScreenIsLargeEnough();
 });
 
 
