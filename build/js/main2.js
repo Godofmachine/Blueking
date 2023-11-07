@@ -110,23 +110,40 @@ themeToggleBtn.addEventListener('click', function() {
 });
 
 const contactForm = document.getElementById("contact-form");
-        const successAlert = document.getElementById("alert-border-1");
-        const closeAlertButton = document.getElementById("closeAlert");
+const successAlert = document.getElementById("alert-border-1");
+const closeAlertButton = document.getElementById("closeAlert");
 
+contactForm.addEventListener("submit", function (event) {
+    event.preventDefault(); // Prevent the form from redirecting
 
-        contactForm.addEventListener("submit", function (event) {
-            event.preventDefault(); // Prevent the form from redirecting
+    // Prepare form data for sending
+    const formData = new FormData(contactForm);
 
-            // Simulate a successful form submission
-            // You can replace this with your actual form submission code
-            setTimeout(function () {
-                successAlert.style.display = "flex"; // Show the success alert
-            }, 2000); // Simulate a 2-second delay (you can adjust this)
+    // Send the form data to the Web3Forms API using fetch
+    fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData,
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Check if the submission was successful
+        if (data.success) {
+            // Show the success alert
+            successAlert.style.display = "flex";
+        } else {
+            // Handle errors (e.g., show an error message)
+            console.error('Form submission failed:', data.message);
+        }
+    })
+    .catch(error => {
+        // Handle network errors
+        console.error('Form submission error:', error);
+    });
 
-            closeAlertButton.addEventListener("click", function () {
-                successAlert.style.display = "none"; // Hide the success alert
-            });
+    closeAlertButton.addEventListener("click", function () {
+        successAlert.style.display = "none"; // Hide the success alert
+    });
 
-            // Reset the form if needed
-            // contactForm.reset();
-        });
+    // Optionally reset the form if needed
+    // contactForm.reset();
+});
